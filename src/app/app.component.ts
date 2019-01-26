@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { take } from 'rxjs/operators';
+
+import { HelloWorldService } from './services/helloworld.service';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +10,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   title = 'budget-frontend';
+  loading: boolean;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private helloWorldService: HelloWorldService) {}
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:3000/helloworld')
-      .subscribe(result => {
-        this.title = JSON.stringify(result);
-      }, error => {
-        console.log(error);
-      });
+    this.helloWorldService.call();
+    this.helloWorldService.getLoadingChanged().pipe(take(1)).subscribe(
+      (loading: boolean) => {
+        console.log('test');
+        this.loading = loading;
+        this.title = this.helloWorldService.getServerResponse();
+      }
+    );
   }
 }
