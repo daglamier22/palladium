@@ -5,6 +5,7 @@ export function determineServerURL(): string {
   ];
   let port = 80;
   let sourcePort = window.location.port;
+  let destinationHostName;
 
   if (!sourcePort) {
     if (window.location.protocol === 'http') {
@@ -17,8 +18,9 @@ export function determineServerURL(): string {
   for (let i = 0; i < serverPorts.length; i++) {
     if (window.location.hostname === serverPorts[i].hostName && sourcePort === serverPorts[i].sourcePort) {
       port = serverPorts[i].destinationPort;
+      destinationHostName = serverPorts[i].destinationHostName;
       break;
     }
   }
-  return window.location.protocol + '//' + window.location.hostname + ':' + port;
+  return window.location.protocol + '//' + destinationHostName + ':' + port;
 }
