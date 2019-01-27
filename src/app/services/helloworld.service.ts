@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as util from './util';
 import { Observable } from 'rxjs';
 
-const helloWorldURL = '/helloworld';
+const helloWorldURL = '/tests/helloworld';
 
 @Injectable({
   providedIn: 'root'
