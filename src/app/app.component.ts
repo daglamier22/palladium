@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
     this.helloWorldService.call();
     this.helloWorldService.getLoadingChanged().pipe(take(1)).subscribe(
       (loading: boolean) => {
-        console.log('test');
         this.loading = loading;
         this.title = this.helloWorldService.getServerResponse();
       }
