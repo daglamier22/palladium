@@ -1,6 +1,6 @@
 # BudgetFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
+Front-end application for personal budget management. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
 
 ## Development server
 
