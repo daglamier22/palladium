@@ -1,0 +1,9 @@
+<input
+  type="text"
+  placeholder="{{ placeholder }}"
+  value="{{ value }}"
+  (change)="writeValue($event.target.value)"
+  (blur)="onTouched()"
+  disabled="{{ disabled }}">
+
+<div>{{ error }}</div>

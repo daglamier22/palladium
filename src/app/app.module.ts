@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomepageComponent } from './views/homepage/homepage.component';
+import { ButtonComponent } from './components/buttons/button/button.component';
+import { InputFieldComponent } from './components/input-field/input-field.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomepageComponent
+    HomepageComponent,
+    ButtonComponent,
+    InputFieldComponent,
   ],
   imports: [
     BrowserModule,
