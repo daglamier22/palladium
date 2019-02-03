@@ -1,22 +1,34 @@
-<form>
+<form [formGroup]="signupForm" (submit)="onSubmit()">
   <div>
     <label for="username">User Name</label>
     <app-input-field
       id="username"
-      placeholder="Enter a username">
+      placeholder="Enter a username"
+      formControlName="username"
+      [error]="getFormControlErrors('username')">
     </app-input-field>
     <label for="password">Password</label>
     <app-input-field
       id="password"
       type="password"
-      placeholder="Enter a password">
+      placeholder="Enter a password"
+      formControlName="password"
+      [error]="getFormControlErrors('password')">
     </app-input-field>
     <label for="confirmPassword">Confirm Password</label>
     <app-input-field
       id="confirmPassword"
       type="password"
-      placeholder="Confirm a password">
+      placeholder="Confirm a password"
+      formControlName="confirmPassword"
+      [error]="getFormControlErrors('confirmPassword')">
     </app-input-field>
-    <app-button text="Signup"></app-button>
+    <hr>
+    <p *ngIf="!passwordsMatch()">Passwords do not match!</p>
+    <app-button
+      [disabled]="!signupForm.valid"
+      text="Signup"
+      submit="true">
+    </app-button>
   </div>
 </form>

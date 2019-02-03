@@ -2,7 +2,7 @@
   [type]="type"
   placeholder="{{ placeholder }}"
   value="{{ value }}"
-  (change)="writeValue($event.target.value)"
+  (input)="writeValue($event.target.value)"
   (blur)="onTouched()"
   disabled="{{ disabled }}"
   [id]="id">
