@@ -9,6 +9,7 @@ import { HomepageComponent } from './views/homepage/homepage.component';
 import { ButtonComponent } from './components/buttons/button/button.component';
 import { InputFieldComponent } from './components/input-field/input-field.component';
 import { SignupComponent } from './views/auth/signup/signup.component';
+import { LoginComponent } from './views/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SignupComponent } from './views/auth/signup/signup.component';
     ButtonComponent,
     InputFieldComponent,
     SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
