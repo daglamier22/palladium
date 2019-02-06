@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { forEach } from '@angular/router/src/utils/collection';
+import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+
+import { AuthService } from '../../../services/auth/auth.service';
+import { AuthResponse } from '../../../services/auth/auth.model';
 
 @Component({
   selector: 'app-signup',
@@ -9,8 +13,12 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
+  loading: boolean;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.signupForm = this.createFormGroup();
@@ -19,9 +27,21 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.markControlsTouched();
     if (this.signupForm.valid && this.signupForm.controls.password.value === this.signupForm.controls.confirmPassword.value) {
-      console.log('form valid');
       if (this.signupForm.controls.password.value === this.signupForm.controls.confirmPassword.value) {
-        console.log('passwords match');
+        const username = this.signupForm.controls.username.value;
+        const password = this.signupForm.controls.password.value;
+        const confirmPassword = this.signupForm.controls.confirmPassword.value;
+        this.loading = true;
+        this.authService.signup(username, password, confirmPassword);
+        this.authService.getLoadingChangedSignup().pipe(take(1)).subscribe(
+          (loading: boolean) => {
+            this.loading = loading;
+            const response: AuthResponse = this.authService.getServerResponseSignup();
+            if (response.status === 'SUCCESS') {
+              this.router.navigate(['/login']);
+            }
+          }
+        );
       } else {
         console.log('passwords do not match');
       }
@@ -39,10 +59,10 @@ export class SignupComponent implements OnInit {
         validators: [Validators.required]
       }),
       password: new FormControl('', {
-        validators: [Validators.required, Validators.minLength(6)]
+        validators: [Validators.required, Validators.minLength(4)]
       }),
       confirmPassword: new FormControl('', {
-        validators: [Validators.required, Validators.minLength(6)]
+        validators: [Validators.required, Validators.minLength(4)]
       })
     });
   }
@@ -70,7 +90,7 @@ export class SignupComponent implements OnInit {
         return 'This is a required field.';
       }
       if (control.errors.minlength) {
-        return 'Must be a minimum of 6 characters.';
+        return 'Must be a minimum of 4 characters.';
       }
     }
     return '';
