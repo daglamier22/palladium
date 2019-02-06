@@ -1,0 +1,10 @@
+<nav>
+  <div>
+    <ul>
+      <li><a [routerLink]="['/']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li><a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a></li>
+      <li><a href="javascript:void(0)" (click)="onLogout()">Logout</a></li>
+      <li><a [routerLink]="['/signup']" routerLinkActive="router-link-active">Signup</a></li>
+    </ul>
+  </div>
+</nav>
