@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 import { HelloWorldService } from '../../services/helloworld.service';
+import { VersionService } from '../../services/version.service';
 
 @Component({
   selector: 'app-homepage',
@@ -13,7 +14,8 @@ export class HomepageComponent implements OnInit {
   loading: boolean;
 
   constructor(
-    private helloWorldService: HelloWorldService
+    private helloWorldService: HelloWorldService,
+    private versionService: VersionService
   ) { }
 
   ngOnInit() {
@@ -22,6 +24,14 @@ export class HomepageComponent implements OnInit {
       (loading: boolean) => {
         this.loading = loading;
         this.message = this.helloWorldService.getServerResponse();
+      }
+    );
+
+    this.versionService.call();
+    this.versionService.getLoadingChanged().pipe(take(1)).subscribe(
+      (loading: boolean) => {
+        this.loading = loading;
+        this.message = this.versionService.getServerResponse();
       }
     );
   }
