@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+
+import { AuthService } from '../../../services/auth/auth.service';
+import { AuthResponse } from '../../../services/auth/auth.model';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +13,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  loading: boolean;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.createFormGroup();
@@ -18,7 +27,19 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.markControlsTouched();
     if (this.loginForm.valid) {
-      console.log('form valid');
+      const username = this.loginForm.controls.username.value;
+        const password = this.loginForm.controls.password.value;
+        this.loading = true;
+        this.authService.login(username, password);
+        this.authService.getLoadingChangedLogin().pipe(take(1)).subscribe(
+          (loading: boolean) => {
+            this.loading = loading;
+            const response: AuthResponse = this.authService.getServerResponseLogin();
+            if (response.status === 'SUCCESS') {
+              this.router.navigate(['/']);
+            }
+          }
+        );
     } else {
       console.log('form invalid');
     }
