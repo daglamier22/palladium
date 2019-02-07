@@ -23,9 +23,11 @@ export class LoginPayload {
 export class AuthResponse {
   message: string;
   status: string;
+  token: string;
 
-  constructor(message: string, status: string) {
+  constructor(message: string, status: string, token: string) {
     this.message = message;
     this.status = status;
+    this.token = token;
   }
 }
