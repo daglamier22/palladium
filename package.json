@@ -1,6 +1,6 @@
 {
   "name": "budget-frontend",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href 'https://daglamier22.github.io/budget-frontend/' && ngh --dir=dist/budget-frontend"
+    "deploy": "ng build --prod --base-href 'https://daglamier22.github.io/budget-frontend/' && ngh --dir=dist/budget-frontend",
+    "dev": "ng serve"
   },
   "private": true,
   "dependencies": {

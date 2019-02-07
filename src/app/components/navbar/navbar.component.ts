@@ -23,13 +23,6 @@ export class NavbarComponent implements OnInit {
   onLogout() {
     console.log('logout');
     this.authService.logout();
-        this.authService.getLoadingChangedLogin().pipe(take(1)).subscribe(
-          (loading: boolean) => {
-            const response: AuthResponse = this.authService.getServerResponseLogin();
-            if (response.status === 'SUCCESS') {
-              this.router.navigate(['/']);
-            }
-          }
-        );
+    this.router.navigate(['/login']);
   }
 }

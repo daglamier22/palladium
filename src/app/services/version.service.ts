@@ -43,8 +43,7 @@ export class VersionService {
     this.http.get(
       fullURL,
       {
-        headers: new HttpHeaders({'Content-Type': 'application/json'}),
-        withCredentials: true
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }
     ).subscribe((response: any) => {
       try {
@@ -55,7 +54,7 @@ export class VersionService {
       this.loading = false;
       this.loadingChanged.next(this.loading);
     }, (error) => {
-      console.log('HelloWorldService', error);
+      console.log('VersionService', error);
       this.serverResponse = 'Server Error';
       this.loading = false;
       this.loadingChanged.next(this.loading);

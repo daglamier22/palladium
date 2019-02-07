@@ -15,13 +15,10 @@ const logoutURL = '/logout';
 export class AuthService {
   private loadingSignup: boolean;
   private loadingLogin: boolean;
-  private loadingLogout: boolean;
   private loadingChangedSignup = new Subject<boolean>();
   private loadingChangedLogin = new Subject<boolean>();
-  private loadingChangedLogout = new Subject<boolean>();
   private serverResponseSignup: AuthResponse;
   private serverResponseLogin: AuthResponse;
-  private serverResponseLogout: AuthResponse;
 
   loggedIn: boolean;
 
@@ -37,10 +34,6 @@ export class AuthService {
     return this.loadingLogin;
   }
 
-  getLoadingLogout(): boolean {
-    return this.loadingLogout;
-  }
-
   getLoadingChangedSignup(): Observable<boolean> {
     return this.loadingChangedSignup.asObservable();
   }
@@ -49,20 +42,12 @@ export class AuthService {
     return this.loadingChangedLogin.asObservable();
   }
 
-  getLoadingChangedLogout(): Observable<boolean> {
-    return this.loadingChangedLogout.asObservable();
-  }
-
   getServerResponseSignup(): AuthResponse {
     return this.serverResponseSignup;
   }
 
   getServerResponseLogin(): AuthResponse {
     return this.serverResponseLogin;
-  }
-
-  getServerResponseLogout(): AuthResponse {
-    return this.serverResponseLogout;
   }
 
   isLoggedIn() {
@@ -89,21 +74,18 @@ export class AuthService {
     this.http.post<AuthResponse>(
       fullURL,
       payload,
-      {
-        headers: new HttpHeaders({'Content-Type': 'application/json'}),
-        withCredentials: true,
-      }
+      { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
     ).subscribe((response: AuthResponse) => {
       try {
-        this.serverResponseSignup = new AuthResponse(response.message, response.status);
+        this.serverResponseSignup = new AuthResponse(response.message, response.status, response.token);
       } catch (err) {
-        this.serverResponseSignup = new AuthResponse('Parsing Error', 'FAILURE');
+        this.serverResponseSignup = new AuthResponse('Parsing Error', 'FAILURE', undefined);
       }
       this.loadingSignup = false;
       this.loadingChangedSignup.next(this.loadingSignup);
     }, (error) => {
       console.log('AuthService signup: ', error);
-      this.serverResponseSignup = new AuthResponse(error.error.message, error.error.status);
+      this.serverResponseSignup = new AuthResponse(error.error.message, error.error.status, error.error.token);
       this.loadingSignup = false;
       this.loadingChangedSignup.next(this.loadingSignup);
     });
@@ -129,62 +111,29 @@ export class AuthService {
     this.http.post(
       fullURL,
       payload,
-      {
-        headers: new HttpHeaders({'Content-Type': 'application/json'}),
-        withCredentials: true,
-      }
+      { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
     ).subscribe((response: any) => {
       try {
-        this.serverResponseLogin = new AuthResponse(response.message, response.status);
+        this.serverResponseLogin = new AuthResponse(response.message, response.status, response.token);
       } catch (err) {
-        this.serverResponseLogin = new AuthResponse('Parsing Error', 'FAILURE');
+        this.serverResponseLogin = new AuthResponse('Parsing Error', 'FAILURE', undefined);
       }
       if (this.serverResponseLogin.status === 'SUCCESS') {
         this.loggedIn = true;
+        localStorage.setItem('token', this.serverResponseLogin.token);
       }
       this.loadingLogin = false;
       this.loadingChangedLogin.next(this.loadingLogin);
     }, (error) => {
       console.log('AuthService login: ', error);
-      this.serverResponseLogin = new AuthResponse('Server Error', 'FAILURE');
+      this.serverResponseLogin = new AuthResponse('Server Error', 'FAILURE', undefined);
       this.loadingLogin = false;
       this.loadingChangedLogin.next(this.loadingLogin);
     });
   }
 
   logout() {
-    if (this.loadingLogout) {
-      return;
-    }
-
-    this.loadingLogout = true;
-    this.loadingChangedLogout.next(this.loadingLogout);
-
-
-    const fullURL = util.determineServerURL() + logoutURL;
-    this.http.post(
-      fullURL,
-      {},
-      {
-        headers: new HttpHeaders({'Content-Type': 'application/json'}),
-        withCredentials: true,
-      }
-    ).subscribe((response: any) => {
-      try {
-        this.serverResponseLogout = new AuthResponse(response.message, response.status);
-      } catch (err) {
-        this.serverResponseLogout = new AuthResponse('Parsing Error', 'FAILURE');
-      }
-      if (this.serverResponseLogout.status === 'SUCCESS') {
-        this.loggedIn = false;
-      }
-      this.loadingLogout = false;
-      this.loadingChangedLogout.next(this.loadingLogout);
-    }, (error) => {
-      console.log('AuthService logout: ', error);
-      this.serverResponseLogout = new AuthResponse('Server Error', 'FAILURE');
-      this.loadingLogout = false;
-      this.loadingChangedLogout.next(this.loadingLogout);
-    });
+    this.loggedIn = false;
+    localStorage.removeItem('token');
   }
 }
