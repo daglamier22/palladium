@@ -12,6 +12,7 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
 import { SignupComponent } from './views/auth/signup/signup.component';
 import { LoginComponent } from './views/auth/login/login.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
