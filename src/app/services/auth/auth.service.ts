@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 
 import * as util from '../util';
 import { SignupPayload, LoginPayload, AuthResponse } from './auth.model';
@@ -14,13 +14,13 @@ const logoutURL = '/logout';
 })
 export class AuthService {
   private loadingSignup: boolean;
-  private loadingLogin: boolean;
   private loadingChangedSignup = new Subject<boolean>();
-  private loadingChangedLogin = new Subject<boolean>();
   private serverResponseSignup: AuthResponse;
+  private loadingLogin: boolean;
+  private loadingChangedLogin = new Subject<boolean>();
   private serverResponseLogin: AuthResponse;
-
-  loggedIn: boolean;
+  private loggedIn: boolean;
+  private loggedInChanged = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient
@@ -30,20 +30,20 @@ export class AuthService {
     return this.loadingSignup;
   }
 
-  getLoadingLogin(): boolean {
-    return this.loadingLogin;
-  }
-
   getLoadingChangedSignup(): Observable<boolean> {
     return this.loadingChangedSignup.asObservable();
   }
 
-  getLoadingChangedLogin(): Observable<boolean> {
-    return this.loadingChangedLogin.asObservable();
-  }
-
   getServerResponseSignup(): AuthResponse {
     return this.serverResponseSignup;
+  }
+
+  getLoadingLogin(): boolean {
+    return this.loadingLogin;
+  }
+
+  getLoadingChangedLogin(): Observable<boolean> {
+    return this.loadingChangedLogin.asObservable();
   }
 
   getServerResponseLogin(): AuthResponse {
@@ -52,6 +52,17 @@ export class AuthService {
 
   isLoggedIn() {
     return this.loggedIn;
+  }
+
+  getLoggedInChanged(): Observable<boolean> {
+    return this.loggedInChanged.asObservable();
+  }
+
+  checkForToken() {
+    if (localStorage.getItem('token')) {
+      this.loggedIn = true;
+      this.loggedInChanged.next(this.loggedIn);
+    }
   }
 
   signup(username: string, password: string, confirmPassword: string) {
@@ -120,6 +131,7 @@ export class AuthService {
       }
       if (this.serverResponseLogin.status === 'SUCCESS') {
         this.loggedIn = true;
+        this.loggedInChanged.next(this.loggedIn);
         localStorage.setItem('token', this.serverResponseLogin.token);
       }
       this.loadingLogin = false;
@@ -134,6 +146,7 @@ export class AuthService {
 
   logout() {
     this.loggedIn = false;
+    this.loggedInChanged.next(this.loggedIn);
     localStorage.removeItem('token');
   }
 }

@@ -11,6 +11,7 @@ import { AuthResponse } from '../../services/auth/auth.model';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  isLoggedIn: boolean;
 
   constructor(
     private router: Router,
@@ -18,6 +19,9 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.authService.getLoggedInChanged().subscribe((loggedIn: boolean) => {
+      this.isLoggedIn = loggedIn;
+    });
   }
 
   onLogout() {
