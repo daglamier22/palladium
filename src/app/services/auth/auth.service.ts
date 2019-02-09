@@ -58,6 +58,13 @@ export class AuthService {
     return this.loggedInChanged.asObservable();
   }
 
+  checkForToken() {
+    if (localStorage.getItem('token')) {
+      this.loggedIn = true;
+      this.loggedInChanged.next(this.loggedIn);
+    }
+  }
+
   signup(username: string, password: string, confirmPassword: string) {
     if (this.loadingSignup) {
       return;
