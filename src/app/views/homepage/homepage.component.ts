@@ -1,38 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { HelloWorldService } from '../../services/helloworld.service';
 import { VersionService } from '../../services/version.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss']
 })
-export class HomepageComponent implements OnInit {
-  message = 'hi';
+export class HomepageComponent implements OnInit, OnDestroy {
+  versionBackend: string;
+  versionFrontend: string;
   loading: boolean;
+  loadingVersionSubscription: Subscription;
 
   constructor(
-    private helloWorldService: HelloWorldService,
     private versionService: VersionService
   ) { }
 
   ngOnInit() {
-    this.helloWorldService.call();
-    this.helloWorldService.getLoadingChanged().pipe(take(1)).subscribe(
+    this.versionFrontend = this.versionService.getVersionFrontend();
+    this.versionBackend = this.versionService.getVersionBackend();
+    this.loadingVersionSubscription = this.versionService.getLoadingChanged().subscribe(
       (loading: boolean) => {
         this.loading = loading;
-        this.message = this.helloWorldService.getServerResponse();
+        if (!loading) {
+          this.versionFrontend = this.versionService.getVersionFrontend();
+          this.versionBackend = this.versionService.getVersionBackend();
+        }
       }
     );
+  }
 
-    this.versionService.call();
-    this.versionService.getLoadingChanged().pipe(take(1)).subscribe(
-      (loading: boolean) => {
-        this.loading = loading;
-        this.message = this.versionService.getServerResponse();
-      }
-    );
+  ngOnDestroy() {
+    if (this.loadingVersionSubscription) {
+      this.loadingVersionSubscription.unsubscribe();
+    }
   }
 }
