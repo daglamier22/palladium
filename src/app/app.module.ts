@@ -13,6 +13,7 @@ import { SignupComponent } from './views/auth/signup/signup.component';
 import { LoginComponent } from './views/auth/login/login.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { OverviewViewComponent } from './views/overview-view/overview-view.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     ButtonComponent,
     InputFieldComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    OverviewViewComponent,
   ],
   imports: [
     BrowserModule,

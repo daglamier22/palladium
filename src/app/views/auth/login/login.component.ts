@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
             this.loading = loading;
             const response: AuthResponse = this.authService.getServerResponseLogin();
             if (response.status === 'SUCCESS') {
-              this.router.navigate(['/']);
+              this.router.navigate(['/overview']);
             }
           }
         );
