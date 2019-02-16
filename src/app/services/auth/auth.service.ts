@@ -7,7 +7,6 @@ import { SignupPayload, LoginPayload, AuthResponse } from './auth.model';
 
 const signupURL = '/signup';
 const loginURL = '/login';
-const logoutURL = '/logout';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +18,10 @@ export class AuthService {
   private loadingLogin: boolean;
   private loadingChangedLogin = new Subject<boolean>();
   private serverResponseLogin: AuthResponse;
+
   private loggedIn: boolean;
   private loggedInChanged = new BehaviorSubject<boolean>(false);
+  private token: string;
 
   constructor(
     private http: HttpClient
@@ -62,7 +63,20 @@ export class AuthService {
     if (localStorage.getItem('token')) {
       this.loggedIn = true;
       this.loggedInChanged.next(this.loggedIn);
+      this.token = localStorage.getItem('token');
     }
+  }
+
+  getToken(): string {
+    return this.token;
+  }
+
+  private setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  private deleteToken() {
+    localStorage.removeItem('token');
   }
 
   signup(username: string, password: string, confirmPassword: string) {
@@ -73,13 +87,11 @@ export class AuthService {
     this.loadingSignup = true;
     this.loadingChangedSignup.next(this.loadingSignup);
 
-    let payload: SignupPayload;
-    try {
-      payload = new SignupPayload(username, password, confirmPassword);
-    } catch (error) {
-      console.log('AuthService signup: ', error);
-      payload = new SignupPayload('', '', '');
-    }
+    const payload: SignupPayload =  {
+      email: username,
+      password: password,
+      confirmPassword: confirmPassword
+    };
 
     const fullURL = util.determineServerURL() + signupURL;
     this.http.post<AuthResponse>(
@@ -87,16 +99,20 @@ export class AuthService {
       payload,
       { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
     ).subscribe((response: AuthResponse) => {
-      try {
-        this.serverResponseSignup = new AuthResponse(response.message, response.status, response.token);
-      } catch (err) {
-        this.serverResponseSignup = new AuthResponse('Parsing Error', 'FAILURE', undefined);
-      }
+      this.serverResponseSignup = { ...response };
       this.loadingSignup = false;
       this.loadingChangedSignup.next(this.loadingSignup);
     }, (error) => {
       console.log('AuthService signup: ', error);
-      this.serverResponseSignup = new AuthResponse(error.error.message, error.error.status, error.error.token);
+      this.serverResponseSignup = {
+        message: error.error.message,
+        status: error.error.status,
+        values: {
+          id: error.error.id,
+          token: undefined,
+          userId: undefined
+        }
+      };
       this.loadingSignup = false;
       this.loadingChangedSignup.next(this.loadingSignup);
     });
@@ -110,13 +126,10 @@ export class AuthService {
     this.loadingLogin = true;
     this.loadingChangedLogin.next(this.loadingLogin);
 
-    let payload: LoginPayload;
-    try {
-      payload = new LoginPayload(username, password);
-    } catch (error) {
-      console.log('AuthService login: ', error);
-      payload = new LoginPayload('', '');
-    }
+    const payload: LoginPayload = {
+      email: username,
+      password: password
+    };
 
     const fullURL = util.determineServerURL() + loginURL;
     this.http.post(
@@ -124,21 +137,25 @@ export class AuthService {
       payload,
       { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
     ).subscribe((response: any) => {
-      try {
-        this.serverResponseLogin = new AuthResponse(response.message, response.status, response.token);
-      } catch (err) {
-        this.serverResponseLogin = new AuthResponse('Parsing Error', 'FAILURE', undefined);
-      }
+      this.serverResponseLogin = { ... response };
       if (this.serverResponseLogin.status === 'SUCCESS') {
         this.loggedIn = true;
         this.loggedInChanged.next(this.loggedIn);
-        localStorage.setItem('token', this.serverResponseLogin.token);
+        this.setToken(this.serverResponseLogin.values.token);
       }
       this.loadingLogin = false;
       this.loadingChangedLogin.next(this.loadingLogin);
     }, (error) => {
       console.log('AuthService login: ', error);
-      this.serverResponseLogin = new AuthResponse('Server Error', 'FAILURE', undefined);
+      this.serverResponseLogin = {
+        message: error.error.message,
+        status: error.error.status,
+        values: {
+          id: undefined,
+          token: error.error.token,
+          userId: error.error.userId
+        }
+      };
       this.loadingLogin = false;
       this.loadingChangedLogin.next(this.loadingLogin);
     });
@@ -147,6 +164,6 @@ export class AuthService {
   logout() {
     this.loggedIn = false;
     this.loggedInChanged.next(this.loggedIn);
-    localStorage.removeItem('token');
+    this.deleteToken();
   }
 }

@@ -1,33 +1,20 @@
-export class SignupPayload {
+export interface SignupPayload {
   email: string;
   password: string;
   confirmPassword: string;
-
-  constructor(email: string, password: string, confirmPassword: string) {
-    this.email = email;
-    this.password = password;
-    this.confirmPassword = confirmPassword;
-  }
 }
 
-export class LoginPayload {
+export interface LoginPayload {
   email: string;
   password: string;
-
-  constructor(email: string, password: string) {
-    this.email = email;
-    this.password = password;
-  }
 }
 
-export class AuthResponse {
+export interface AuthResponse {
   message: string;
   status: string;
-  token: string;
-
-  constructor(message: string, status: string, token: string) {
-    this.message = message;
-    this.status = status;
-    this.token = token;
+  values: {
+    id: string;
+    token: string;
+    userId: string;
   }
 }
