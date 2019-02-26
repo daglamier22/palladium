@@ -7,6 +7,9 @@
       <li *ngIf="isLoggedIn">
         <a [routerLink]="['/overview']" routerLinkActive="router-link-active">Overview</a>
       </li>
+      <li *ngIf="isLoggedIn">
+        <a [routerLink]="['/add-account']" routerLinkActive="router-link-active">Add Account</a>
+      </li>
       <li *ngIf="!isLoggedIn">
         <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
       </li>

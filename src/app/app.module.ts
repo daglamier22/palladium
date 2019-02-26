@@ -14,6 +14,7 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { OverviewViewComponent } from './views/overview-view/overview-view.component';
+import { AddAccountViewComponent } from './views/add-account-view/add-account-view.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { OverviewViewComponent } from './views/overview-view/overview-view.compo
     SignupComponent,
     LoginComponent,
     OverviewViewComponent,
+    AddAccountViewComponent,
   ],
   imports: [
     BrowserModule,

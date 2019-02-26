@@ -6,13 +6,15 @@ import { HomepageViewComponent } from './views/homepage-view/homepage-view.compo
 import { SignupComponent } from './views/auth/signup/signup.component';
 import { LoginComponent } from './views/auth/login/login.component';
 import { OverviewViewComponent } from './views/overview-view/overview-view.component';
+import { AddAccountViewComponent } from './views/add-account-view/add-account-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full'},
   { path: '', component: HomepageViewComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'overview', component: OverviewViewComponent, canActivate: [AuthGuard] }
+  { path: 'overview', component: OverviewViewComponent, canActivate: [AuthGuard] },
+  { path: 'add-account', component: AddAccountViewComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
