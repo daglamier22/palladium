@@ -6,10 +6,10 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  templateUrl: './homepage-view.component.html',
+  styleUrls: ['./homepage-view.component.scss']
 })
-export class HomepageComponent implements OnInit, OnDestroy {
+export class HomepageViewComponent implements OnInit, OnDestroy {
   versionBackend: string;
   versionFrontend: string;
   loading: boolean;

@@ -4,6 +4,15 @@
       <li>
         <a [routerLink]="['/']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">Home</a>
       </li>
+      <li *ngIf="isLoggedIn">
+        <a [routerLink]="['/overview']" routerLinkActive="router-link-active">Overview</a>
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a [routerLink]="['/add-account']" routerLinkActive="router-link-active">Add Account</a>
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a [routerLink]="['/add-transaction']" routerLinkActive="router-link-active">Add Transaction</a>
+      </li>
       <li *ngIf="!isLoggedIn">
         <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
       </li>
