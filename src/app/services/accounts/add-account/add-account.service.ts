@@ -4,14 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import * as util from '../../util';
 import { AuthService } from '../../auth/auth.service';
-import { AddAccountResponse, AddAccountPayload } from './add-accounts.model';
+import { AddAccountResponse, AddAccountPayload } from './add-account.model';
 
 const serverURL = '/add-account';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AddAccountsService {
+export class AddAccountService {
   private loading: boolean;
   private loadingChanged = new Subject<boolean>();
   private serverResponse: AddAccountResponse;

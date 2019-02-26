@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 
-import { EditAccountsService } from '../../services/accounts/edit-accounts/edit-accounts.service';
-import { EditAccountResponse } from '../../services/accounts/edit-accounts/edit-accounts.model';
+import { EditAccountService } from '../../services/accounts/edit-account/edit-account.service';
+import { EditAccountResponse } from '../../services/accounts/edit-account/edit-account.model';
 import { GetAccountsService } from '../../services/accounts/get-accounts/get-accounts.service';
 import { Account } from '../../services/accounts/get-accounts/get-accounts.model';
 
@@ -22,7 +22,7 @@ export class EditAccountViewComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private getAccountsService: GetAccountsService,
-    private editAccountsService: EditAccountsService,
+    private editAccountsService: EditAccountService,
   ) { }
 
   ngOnInit() {

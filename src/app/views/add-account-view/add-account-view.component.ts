@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 
-import { AddAccountsService } from '../../services/accounts/add-accounts/add-accounts.service';
-import { AddAccountResponse } from '../../services/accounts/add-accounts/add-accounts.model';
+import { AddAccountService } from '../../services/accounts/add-account/add-account.service';
+import { AddAccountResponse } from '../../services/accounts/add-account/add-account.model';
 
 @Component({
   selector: 'app-add-account-view',
@@ -17,7 +17,7 @@ export class AddAccountViewComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private addAccountsService: AddAccountsService
+    private addAccountsService: AddAccountService
   ) { }
 
   ngOnInit() {

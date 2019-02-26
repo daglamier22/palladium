@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AddAccountsService } from './add-accounts.service';
+import { AddAccountService } from './add-account.service';
 
 describe('AddAccountsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: AddAccountsService = TestBed.get(AddAccountsService);
+    const service: AddAccountService = TestBed.get(AddAccountService);
     expect(service).toBeTruthy();
   });
 });
