@@ -1,12 +1,4 @@
-export interface GetAccountResponse {
-  message: string;
-  status: string;
-  values: {
-    accounts: Account[];
-  };
-}
-
-export interface Account {
+export interface EditAccountPayload {
   _id: string;
   firmName: string;
   accountName: string;
@@ -17,4 +9,9 @@ export interface Account {
   creditLimit: string;
   loanTerm: string;
   loanOriginationDate: string;
+}
+
+export interface EditAccountResponse {
+  message: string;
+  status: string;
 }

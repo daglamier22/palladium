@@ -63,4 +63,16 @@ export class GetAccountsService {
       this.loadingChanged.next(this.loading);
     });
   }
+
+  getAccount(id: string) {
+    if (this.serverResponse) {
+      for (const account of this.serverResponse.values.accounts) {
+        console.log(account);
+        if (account._id === id) {
+          return account;
+        }
+      }
+    }
+    return undefined;
+  }
 }
