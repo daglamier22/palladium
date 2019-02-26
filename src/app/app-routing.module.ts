@@ -8,6 +8,7 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { OverviewViewComponent } from './views/overview-view/overview-view.component';
 import { AddAccountViewComponent } from './views/add-account-view/add-account-view.component';
 import { EditAccountViewComponent } from './views/edit-account-view/edit-account-view.component';
+import { AddTransactionViewComponent } from './views/add-transaction-view/add-transaction-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'overview', component: OverviewViewComponent, canActivate: [AuthGuard] },
   { path: 'add-account', component: AddAccountViewComponent, canActivate: [AuthGuard] },
   { path: 'edit-account/:id', component: EditAccountViewComponent, canActivate: [AuthGuard] },
+  { path: 'add-transaction', component: AddTransactionViewComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

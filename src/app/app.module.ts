@@ -16,6 +16,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { OverviewViewComponent } from './views/overview-view/overview-view.component';
 import { AddAccountViewComponent } from './views/add-account-view/add-account-view.component';
 import { EditAccountViewComponent } from './views/edit-account-view/edit-account-view.component';
+import { AddTransactionViewComponent } from './views/add-transaction-view/add-transaction-view.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EditAccountViewComponent } from './views/edit-account-view/edit-account
     OverviewViewComponent,
     AddAccountViewComponent,
     EditAccountViewComponent,
+    AddTransactionViewComponent,
   ],
   imports: [
     BrowserModule,
