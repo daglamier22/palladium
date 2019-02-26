@@ -51,10 +51,10 @@ export class GetAccountsService {
       this.loading = false;
       this.loadingChanged.next(this.loading);
     }, (error) => {
-      console.log('GetAccountsService call: ', error);
+      console.log('GetAccountsService call:', error);
       this.serverResponse = {
-        message: error.error.message,
-        status: error.error.status,
+        message: error,
+        status: 'FAILURE',
         values: {
           accounts: []
         }

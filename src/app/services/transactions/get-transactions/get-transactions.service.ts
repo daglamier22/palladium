@@ -53,8 +53,8 @@ export class GetTransactionsService {
     }, (error) => {
       console.log('GetTransactionsService call: ', error);
       this.serverResponse = {
-        message: error.error.message,
-        status: error.error.status,
+        message: error,
+        status: 'FAILURE',
         values: {
           transactions: []
         }

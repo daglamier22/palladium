@@ -105,10 +105,10 @@ export class AuthService {
     }, (error) => {
       console.log('AuthService signup: ', error);
       this.serverResponseSignup = {
-        message: error.error.message,
-        status: error.error.status,
+        message: error,
+        status: 'FAILURE',
         values: {
-          id: error.error.id,
+          id: undefined,
           token: undefined,
           userId: undefined
         }
@@ -148,12 +148,12 @@ export class AuthService {
     }, (error) => {
       console.log('AuthService login: ', error);
       this.serverResponseLogin = {
-        message: error.error.message,
-        status: error.error.status,
+        message: error,
+        status: 'FAILURE',
         values: {
           id: undefined,
-          token: error.error.token,
-          userId: error.error.userId
+          token: undefined,
+          userId: undefined
         }
       };
       this.loadingLogin = false;

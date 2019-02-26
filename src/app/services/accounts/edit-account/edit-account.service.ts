@@ -67,17 +67,10 @@ export class EditAccountService {
       this.loadingChanged.next(this.loading);
     }, (error) => {
       console.log('EditAccountsService call: ', error);
-      if (error.error) {
-        this.serverResponse = {
-          message: error.error.message,
-          status: error.error.status
-        };
-      } else {
-        this.serverResponse = {
-          message: error,
-          status: 'FAILURE'
-        };
-      }
+      this.serverResponse = {
+        message: error,
+        status: 'FAILURE'
+      };
       this.loading = false;
       this.loadingChanged.next(this.loading);
     });

@@ -66,17 +66,10 @@ export class EditTransactionService {
       this.loadingChanged.next(this.loading);
     }, (error) => {
       console.log('EditTransactionResponse call: ', error);
-      if (error.error) {
-        this.serverResponse = {
-          message: error.error.message,
-          status: error.error.status
-        };
-      } else {
-        this.serverResponse = {
-          message: error,
-          status: 'FAILURE'
-        };
-      }
+      this.serverResponse = {
+        message: error,
+        status: 'FAILURE'
+      };
       this.loading = false;
       this.loadingChanged.next(this.loading);
     });
