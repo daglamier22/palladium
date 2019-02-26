@@ -1,0 +1,3 @@
+<ul *ngFor="let account of accounts">
+  <li>{{ account?.accountName }} <a [routerLink]="['/edit-account', account._id]" routerLinkActive="router-link-active" >edit</a></li>
+</ul>
