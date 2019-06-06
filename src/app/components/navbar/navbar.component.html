@@ -1,27 +1,34 @@
-<nav>
+<header class="main-header">
   <div>
-    <ul>
-      <li>
-        <a [routerLink]="['/']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <button class="toggle-button" (click)="onToggleHamburgerMenu()">
+        <span class="toggle-button__bar"></span>
+        <span class="toggle-button__bar"></span>
+        <span class="toggle-button__bar"></span>
+      </button>
+  </div>
+  <nav class="main-nav" [ngClass]="{ 'mobile-nav-open': isHamburgerMenuOpen }">
+    <ul class="main-nav__items">
+      <li class="main-nav__item">
+        <a class="main-nav__link" href="javascript:void(0)" (click)="onHome()" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">Home</a>
       </li>
-      <li *ngIf="isLoggedIn">
-        <a [routerLink]="['/overview']" routerLinkActive="router-link-active">Overview</a>
+      <li class="main-nav__item" *ngIf="isLoggedIn">
+        <a class="main-nav__link" href="javascript:void(0)" (click)="onOverview()"  routerLinkActive="router-link-active">Overview</a>
       </li>
-      <li *ngIf="isLoggedIn">
-        <a [routerLink]="['/add-account']" routerLinkActive="router-link-active">Add Account</a>
+      <li class="main-nav__item" *ngIf="isLoggedIn">
+        <a class="main-nav__link" href="javascript:void(0)" (click)="onAddAccount()" routerLinkActive="router-link-active">Add Account</a>
       </li>
-      <li *ngIf="isLoggedIn">
-        <a [routerLink]="['/add-transaction']" routerLinkActive="router-link-active">Add Transaction</a>
+      <li class="main-nav__item" *ngIf="isLoggedIn">
+        <a class="main-nav__link" href="javascript:void(0)" (click)="onAddTransaction()" routerLinkActive="router-link-active">Add Transaction</a>
       </li>
-      <li *ngIf="!isLoggedIn">
-        <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
+      <li class="navbar-list__item" *ngIf="!isLoggedIn">
+        <a class="main-nav__link" href="javascript:void(0)" (click)="onLogin()" routerLinkActive="router-link-active">Login</a>
       </li>
-      <li *ngIf="isLoggedIn">
-        <a href="javascript:void(0)" (click)="onLogout()">Logout</a>
+      <li class="main-nav__item" *ngIf="isLoggedIn">
+        <a class="main-nav__link" href="javascript:void(0)" (click)="onLogout()">Logout</a>
       </li>
-      <li *ngIf="!isLoggedIn">
-        <a [routerLink]="['/signup']" routerLinkActive="router-link-active">Signup</a>
+      <li class="main-nav__item" *ngIf="!isLoggedIn">
+        <a class="main-nav__link" href="javascript:void(0)" (click)="onSignup()" routerLinkActive="router-link-active">Signup</a>
       </li>
     </ul>
-  </div>
-</nav>
+  </nav>
+</header>
