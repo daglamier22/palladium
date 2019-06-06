@@ -10,6 +10,7 @@ import { AddAccountViewComponent } from './views/add-account-view/add-account-vi
 import { EditAccountViewComponent } from './views/edit-account-view/edit-account-view.component';
 import { AddTransactionViewComponent } from './views/add-transaction-view/add-transaction-view.component';
 import { EditTransactionViewComponent } from './views/edit-transaction-view/edit-transaction-view.component';
+import { ViewAccountViewComponent } from './views/view-account-view/view-account-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full'},
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'edit-account/:id', component: EditAccountViewComponent, canActivate: [AuthGuard] },
   { path: 'add-transaction', component: AddTransactionViewComponent, canActivate: [AuthGuard] },
   { path: 'edit-transaction/:id', component: EditTransactionViewComponent, canActivate: [AuthGuard] },
+  { path: 'view-account/:id', component: ViewAccountViewComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

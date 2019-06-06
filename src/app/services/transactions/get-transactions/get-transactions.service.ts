@@ -6,7 +6,7 @@ import * as util from '../../util';
 import { AuthService } from '../../auth/auth.service';
 import { GetTransactionsResponse } from './get-transactions.model';
 
-const signupURL = '/get-transactions';
+const signupURL = '/get-all-transactions';
 
 @Injectable({
   providedIn: 'root'
