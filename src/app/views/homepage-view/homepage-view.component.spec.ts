@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { HomepageViewComponent } from './homepage-view.component';
 
@@ -8,7 +9,12 @@ describe('HomepageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomepageViewComponent ]
+      imports: [
+        HttpClientModule
+      ],
+      declarations: [
+        HomepageViewComponent
+      ]
     })
     .compileComponents();
   }));

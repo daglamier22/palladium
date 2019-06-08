@@ -18,6 +18,7 @@ import { AddAccountViewComponent } from './views/add-account-view/add-account-vi
 import { EditAccountViewComponent } from './views/edit-account-view/edit-account-view.component';
 import { AddTransactionViewComponent } from './views/add-transaction-view/add-transaction-view.component';
 import { EditTransactionViewComponent } from './views/edit-transaction-view/edit-transaction-view.component';
+import { ViewAccountViewComponent } from './views/view-account-view/view-account-view.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { EditTransactionViewComponent } from './views/edit-transaction-view/edit
     EditAccountViewComponent,
     AddTransactionViewComponent,
     EditTransactionViewComponent,
+    ViewAccountViewComponent,
   ],
   imports: [
     BrowserModule,

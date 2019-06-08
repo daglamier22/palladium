@@ -2,11 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
-import { OverviewViewComponent } from './overview-view.component';
+import { ViewAccountViewComponent } from './view-account-view.component';
 
-describe('OverviewViewComponent', () => {
-  let component: OverviewViewComponent;
-  let fixture: ComponentFixture<OverviewViewComponent>;
+describe('ViewAccountViewComponent', () => {
+  let component: ViewAccountViewComponent;
+  let fixture: ComponentFixture<ViewAccountViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,13 +14,15 @@ describe('OverviewViewComponent', () => {
         RouterTestingModule,
         HttpClientModule
       ],
-      declarations: [ OverviewViewComponent ]
+      declarations: [
+        ViewAccountViewComponent
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OverviewViewComponent);
+    fixture = TestBed.createComponent(ViewAccountViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -68,7 +68,9 @@ export class EditTransactionViewComponent implements OnInit {
         (loading: boolean) => {
           if (!loading) {
             transaction = this.getTransactionsService.getTransaction(this.transactionId);
-            this.setFormValues(transaction);
+            if (transaction) {
+              this.setFormValues(transaction);
+            }
           }
         }
       );
@@ -79,14 +81,14 @@ export class EditTransactionViewComponent implements OnInit {
     if (!transaction) {
       return;
     }
-    this.transactionForm.controls.firmName.setValue(transaction.date);
+    this.transactionForm.controls.date.setValue(transaction.date);
     this.transactionForm.controls.accountName.setValue(transaction.accountName);
-    this.transactionForm.controls.accountType.setValue(transaction.description);
-    this.transactionForm.controls.originalBalance.setValue(transaction.categoryParent);
-    this.transactionForm.controls.currentBalance.setValue(transaction.categoryChild);
-    this.transactionForm.controls.interestRate.setValue(transaction.amount);
-    this.transactionForm.controls.creditLimit.setValue(transaction.transactionType);
-    this.transactionForm.controls.loanTerm.setValue(transaction.note);
+    this.transactionForm.controls.description.setValue(transaction.description);
+    this.transactionForm.controls.categoryParent.setValue(transaction.categoryParent);
+    this.transactionForm.controls.categoryChild.setValue(transaction.categoryChild);
+    this.transactionForm.controls.amount.setValue(transaction.amount);
+    this.transactionForm.controls.transactionType.setValue(transaction.transactionType);
+    this.transactionForm.controls.note.setValue(transaction.note);
   }
 
   onSubmit() {

@@ -12,6 +12,7 @@ import { AuthResponse } from '../../services/auth/auth.model';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean;
+  isHamburgerMenuOpen: boolean;
 
   constructor(
     private router: Router,
@@ -24,9 +25,44 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  onToggleHamburgerMenu() {
+    this.isHamburgerMenuOpen = !this.isHamburgerMenuOpen;
+  }
+
+  onLogin() {
+    this.isHamburgerMenuOpen = false;
+    this.router.navigate(['/login']);
+  }
+
+  onSignup() {
+    this.isHamburgerMenuOpen = false;
+    this.router.navigate(['/signup']);
+  }
+
   onLogout() {
     console.log('logout');
     this.authService.logout();
+    this.isHamburgerMenuOpen = false;
     this.router.navigate(['/login']);
+  }
+
+  onHome() {
+    this.isHamburgerMenuOpen = false;
+    this.router.navigate(['/']);
+  }
+
+  onOverview() {
+    this.isHamburgerMenuOpen = false;
+    this.router.navigate(['/overview']);
+  }
+
+  onAddAccount() {
+    this.isHamburgerMenuOpen = false;
+    this.router.navigate(['/add-account']);
+  }
+
+  onAddTransaction() {
+    this.isHamburgerMenuOpen = false;
+    this.router.navigate(['/add-transaction']);
   }
 }
