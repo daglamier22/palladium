@@ -1,6 +1,7 @@
 {
   "name": "budget-frontend",
   "version": "0.0.8",
+  "description": "Angular frontend for personal budget app",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,6 +13,8 @@
     "dev": "ng serve"
   },
   "private": true,
+  "author": "Brian McCarthy <daglamier22@gmail.com>",
+  "license": "ISC",
   "dependencies": {
     "@angular/animations": "~8.0.0",
     "@angular/common": "~8.0.0",
