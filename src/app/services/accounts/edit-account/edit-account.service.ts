@@ -12,29 +12,28 @@ const serverURL = '/edit-account';
   providedIn: 'root'
 })
 export class EditAccountService {
-  private loading: boolean;
+  private loading: boolean = false;
   private loadingChanged = new Subject<boolean>();
-  private serverResponse: EditAccountResponse;
+  private serverResponse!: EditAccountResponse;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
-  getLoading(): boolean {
+  public getLoading(): boolean {
     return this.loading;
   }
 
-  getLoadingChanged(): Observable<boolean> {
+  public getLoadingChanged(): Observable<boolean> {
     return this.loadingChanged.asObservable();
   }
 
-  getServerResponse(): EditAccountResponse {
+  public getServerResponse(): EditAccountResponse {
     return this.serverResponse;
   }
 
-  call(_id: string, firmName: string, accountName: string, accountType: string, originalBalance: string,
-        currentBalance: string, interestRate: string, creditLimit: string, loanTerm: string, loanOriginationDate: string) {
+  public call(_id: string, firmName: string, accountName: string, accountType: string, originalBalance: string, currentBalance: string, interestRate: string, creditLimit: string, loanTerm: string, loanOriginationDate: string): void {
     if (this.loading) {
       return;
     }

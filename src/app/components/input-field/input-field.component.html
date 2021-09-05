@@ -1,10 +1,10 @@
 <input
   [type]="type"
-  placeholder="{{ placeholder }}"
-  value="{{ value }}"
-  (input)="writeValue($event.target.value)"
+  [placeholder]="placeholder"
+  [value]="value"
+  (input)="writeValue($event)"
   (blur)="onTouched()"
-  disabled="{{ disabled }}"
+  [disabled]="disabled"
   [id]="id">
 
 <div>{{ error }}</div>

@@ -14,9 +14,9 @@ import { Account } from '../../services/accounts/get-accounts/get-accounts.model
   styleUrls: ['./edit-account-view.component.scss']
 })
 export class EditAccountViewComponent implements OnInit {
-  accountForm: FormGroup;
-  loading: boolean;
-  accountId: string;
+  public accountForm!: FormGroup;
+  public loading: boolean = false;
+  public accountId: string = '';
 
   constructor(
     private router: Router,
@@ -26,12 +26,17 @@ export class EditAccountViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.accountId = params.get('id'));
+    this.route.paramMap.subscribe((params) => {
+      const accountId: string | null = params.get('id');
+      if (accountId) {
+        this.accountId = accountId;
+      }
+    });
     this.accountForm = this.createFormGroup();
     this.getAccount();
   }
 
-  createFormGroup(): FormGroup {
+  private createFormGroup(): FormGroup {
     return new FormGroup({
       firmName: new FormControl('', {
         validators: [Validators.required]
@@ -55,8 +60,8 @@ export class EditAccountViewComponent implements OnInit {
     });
   }
 
-  getAccount() {
-    let account: Account = this.getAccountsService.getAccount(this.accountId);
+  private getAccount(): void {
+    let account: Account | null = this.getAccountsService.getAccount(this.accountId);
     if (account) {
       this.setFormValues(account);
     } else {
@@ -65,14 +70,16 @@ export class EditAccountViewComponent implements OnInit {
         (loading: boolean) => {
           if (!loading) {
             account = this.getAccountsService.getAccount(this.accountId);
-            this.setFormValues(account);
+            if (account) {
+              this.setFormValues(account);
+            }
           }
         }
       );
     }
   }
 
-  setFormValues(account: Account) {
+  private setFormValues(account: Account): void {
     if (!account) {
       return;
     }
@@ -87,7 +94,7 @@ export class EditAccountViewComponent implements OnInit {
     this.accountForm.controls.loanOriginationDate.setValue(account.loanOriginationDate);
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.markControlsTouched();
     if (this.accountForm.valid) {
       const firmName = this.accountForm.controls.firmName.value;
@@ -115,16 +122,18 @@ export class EditAccountViewComponent implements OnInit {
     }
   }
 
-  markControlsTouched() {
+  private markControlsTouched(): void {
     Object
       .keys(this.accountForm.controls)
       .forEach(field => {
         const control = this.accountForm.get(field);
-        control.markAsTouched({onlySelf: true});
+        if (control) {
+          control.markAsTouched({onlySelf: true});
+        }
       });
   }
 
-  getFormControlErrors(controlName: string): string {
+  public getFormControlErrors(controlName: string): string {
     const control = this.accountForm.get(controlName);
     if (control && control.touched && control.errors) {
       if (control.errors.required) {

@@ -12,29 +12,28 @@ const serverURL = '/edit-transaction';
   providedIn: 'root'
 })
 export class EditTransactionService {
-  private loading: boolean;
+  private loading: boolean = false;
   private loadingChanged = new Subject<boolean>();
-  private serverResponse: EditTransactionResponse;
+  private serverResponse!: EditTransactionResponse;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
-  getLoading(): boolean {
+  public getLoading(): boolean {
     return this.loading;
   }
 
-  getLoadingChanged(): Observable<boolean> {
+  public getLoadingChanged(): Observable<boolean> {
     return this.loadingChanged.asObservable();
   }
 
-  getServerResponse(): EditTransactionResponse {
+  public getServerResponse(): EditTransactionResponse {
     return this.serverResponse;
   }
 
-  call(_id: string, date: string, accountName: string, description: string, categoryParent: string,
-    categoryChild: string, amount: string, transactionType: string, note: string) {
+  public call(_id: string, date: string, accountName: string, description: string, categoryParent: string, categoryChild: string, amount: string, transactionType: string, note: string): void {
     if (this.loading) {
       return;
     }

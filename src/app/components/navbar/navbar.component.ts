@@ -11,8 +11,8 @@ import { AuthResponse } from '../../services/auth/auth.model';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn: boolean;
-  isHamburgerMenuOpen: boolean;
+  public isLoggedIn: boolean = false;
+  public isHamburgerMenuOpen: boolean = false;
 
   constructor(
     private router: Router,
@@ -25,43 +25,43 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  onToggleHamburgerMenu() {
+  public onToggleHamburgerMenu(): void {
     this.isHamburgerMenuOpen = !this.isHamburgerMenuOpen;
   }
 
-  onLogin() {
+  public onLogin(): void {
     this.isHamburgerMenuOpen = false;
     this.router.navigate(['/login']);
   }
 
-  onSignup() {
+  public onSignup(): void {
     this.isHamburgerMenuOpen = false;
     this.router.navigate(['/signup']);
   }
 
-  onLogout() {
+  public onLogout(): void {
     console.log('logout');
     this.authService.logout();
     this.isHamburgerMenuOpen = false;
     this.router.navigate(['/login']);
   }
 
-  onHome() {
+  public onHome(): void {
     this.isHamburgerMenuOpen = false;
     this.router.navigate(['/']);
   }
 
-  onOverview() {
+  public onOverview(): void {
     this.isHamburgerMenuOpen = false;
     this.router.navigate(['/overview']);
   }
 
-  onAddAccount() {
+  public onAddAccount(): void {
     this.isHamburgerMenuOpen = false;
     this.router.navigate(['/add-account']);
   }
 
-  onAddTransaction() {
+  public onAddTransaction(): void {
     this.isHamburgerMenuOpen = false;
     this.router.navigate(['/add-transaction']);
   }

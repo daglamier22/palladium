@@ -14,9 +14,9 @@ import { Transaction } from '../../services/transactions/get-transactions/get-tr
   styleUrls: ['./edit-transaction-view.component.scss']
 })
 export class EditTransactionViewComponent implements OnInit {
-  transactionForm: FormGroup;
-  loading: boolean;
-  transactionId: string;
+  public transactionForm!: FormGroup;
+  public loading: boolean = false;
+  public transactionId: string = '';
 
   constructor(
     private router: Router,
@@ -26,12 +26,17 @@ export class EditTransactionViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.transactionId = params.get('id'));
+    this.route.paramMap.subscribe((params) => {
+      const transactionId: string | null = params.get('id');
+      if (transactionId) {
+        this.transactionId = transactionId;
+      }
+    });
     this.transactionForm = this.createFormGroup();
     this.getTransaction();
   }
 
-  createFormGroup(): FormGroup {
+  private createFormGroup(): FormGroup {
     return new FormGroup({
       date: new FormControl('', {
         validators: [Validators.required]
@@ -58,8 +63,8 @@ export class EditTransactionViewComponent implements OnInit {
     });
   }
 
-  getTransaction() {
-    let transaction: Transaction = this.getTransactionsService.getTransaction(this.transactionId);
+  private getTransaction(): void {
+    let transaction: Transaction | null = this.getTransactionsService.getTransaction(this.transactionId);
     if (transaction) {
       this.setFormValues(transaction);
     } else {
@@ -77,7 +82,7 @@ export class EditTransactionViewComponent implements OnInit {
     }
   }
 
-  setFormValues(transaction: Transaction) {
+  private setFormValues(transaction: Transaction): void {
     if (!transaction) {
       return;
     }
@@ -91,7 +96,7 @@ export class EditTransactionViewComponent implements OnInit {
     this.transactionForm.controls.note.setValue(transaction.note);
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.markControlsTouched();
     if (this.transactionForm.valid) {
       const date = this.transactionForm.controls.date.value;
@@ -118,16 +123,18 @@ export class EditTransactionViewComponent implements OnInit {
     }
   }
 
-  markControlsTouched() {
+  private markControlsTouched(): void {
     Object
       .keys(this.transactionForm.controls)
       .forEach(field => {
         const control = this.transactionForm.get(field);
-        control.markAsTouched({onlySelf: true});
+        if (control) {
+          control.markAsTouched({onlySelf: true});
+        }
       });
   }
 
-  getFormControlErrors(controlName: string): string {
+  public getFormControlErrors(controlName: string): string {
     const control = this.transactionForm.get(controlName);
     if (control && control.touched && control.errors) {
       if (control.errors.required) {

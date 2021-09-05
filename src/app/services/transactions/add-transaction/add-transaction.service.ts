@@ -12,29 +12,28 @@ const serverURL = '/add-transaction';
   providedIn: 'root'
 })
 export class AddTransactionService {
-  private loading: boolean;
+  private loading: boolean = false;
   private loadingChanged = new Subject<boolean>();
-  private serverResponse: AddTransactionResponse;
+  private serverResponse!: AddTransactionResponse;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
-  getLoading(): boolean {
+  public getLoading(): boolean {
     return this.loading;
   }
 
-  getLoadingChanged(): Observable<boolean> {
+  public getLoadingChanged(): Observable<boolean> {
     return this.loadingChanged.asObservable();
   }
 
-  getServerResponse(): AddTransactionResponse {
+  public getServerResponse(): AddTransactionResponse {
     return this.serverResponse;
   }
 
-  call(date: string, accountName: string, description: string, categoryParent: string,
-    categoryChild: string, amount: string, transactionType: string, note: string) {
+  public call(date: string, accountName: string, description: string, categoryParent: string, categoryChild: string, amount: string, transactionType: string, note: string): void {
     if (this.loading) {
       return;
     }

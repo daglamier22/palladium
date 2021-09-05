@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { take } from 'rxjs/operators';
 
 import { VersionService } from '../../services/version.service';
 import { Subscription } from 'rxjs';
@@ -10,10 +9,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./homepage-view.component.scss']
 })
 export class HomepageViewComponent implements OnInit, OnDestroy {
-  versionBackend: string;
-  versionFrontend: string;
-  loading: boolean;
-  loadingVersionSubscription: Subscription;
+  public versionBackend: string = '';
+  public versionFrontend: string = '';
+  public loading: boolean = false;
+  private loadingVersionSubscription: Subscription | undefined;
 
   constructor(
     private versionService: VersionService

@@ -62,6 +62,16 @@
         "spaced-comment": [
           "error",
           "always"
-        ]
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": [
+          "warn",
+          {
+            "allowedNames": ["ngOnInit", "ngOnDestroy", "ngAfterViewInit", "ngOnChanges"]
+          }
+        ],
+        "@typescript-eslint/no-inferrable-types": {
+          "ignoreParameters": true,
+          "ignoreProperties": true
+        }
     }
 }

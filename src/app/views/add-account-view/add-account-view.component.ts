@@ -12,8 +12,8 @@ import { AddAccountResponse } from '../../services/accounts/add-account/add-acco
   styleUrls: ['./add-account-view.component.scss']
 })
 export class AddAccountViewComponent implements OnInit {
-  accountForm: FormGroup;
-  loading: boolean;
+  public accountForm!: FormGroup;
+  public loading: boolean = false;
 
   constructor(
     private router: Router,
@@ -24,7 +24,7 @@ export class AddAccountViewComponent implements OnInit {
     this.accountForm = this.createFormGroup();
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.markControlsTouched();
     if (this.accountForm.valid) {
       const firmName = this.accountForm.controls.firmName.value;
@@ -52,7 +52,7 @@ export class AddAccountViewComponent implements OnInit {
     }
   }
 
-  createFormGroup(): FormGroup {
+  private createFormGroup(): FormGroup {
     return new FormGroup({
       firmName: new FormControl('', {
         validators: [Validators.required]
@@ -76,16 +76,18 @@ export class AddAccountViewComponent implements OnInit {
     });
   }
 
-  markControlsTouched() {
+  private markControlsTouched(): void {
     Object
       .keys(this.accountForm.controls)
       .forEach(field => {
         const control = this.accountForm.get(field);
-        control.markAsTouched({onlySelf: true});
+        if (control) {
+          control.markAsTouched({onlySelf: true});
+        }
       });
   }
 
-  getFormControlErrors(controlName: string): string {
+  public getFormControlErrors(controlName: string): string {
     const control = this.accountForm.get(controlName);
     if (control && control.touched && control.errors) {
       if (control.errors.required) {

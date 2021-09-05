@@ -6,14 +6,14 @@ export interface GetTransactionsResponse {
   };
 }
 
-export interface Transaction {
-  _id: string;
-  date: string;
-  accountName: string;
-  description: string;
-  categoryParent: string;
-  categoryChild: string;
-  amount: string;
-  transactionType: string;
-  note: string;
+export class Transaction {
+  public _id: string = '';
+  public date: string = '';
+  public accountName: string = '';
+  public description: string = '';
+  public categoryParent: string = '';
+  public categoryChild: string = '';
+  public amount: string = '';
+  public transactionType: string = '';
+  public note: string = '';
 }

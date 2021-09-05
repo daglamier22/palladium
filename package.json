@@ -5,10 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build:dev": "ng build",
+    "build:prod": "ng build --configuration production",
     "test": "ng test",
     "lint": "ng lint",
-    "deploy": "ng build --prod --base-href 'https://daglamier22.github.io/budget-frontend/' && ngh --dir=dist/budget-frontend",
+    "deploy": "ng build --configuration production --base-href 'https://daglamier22.github.io/budget-frontend/' && ngh --dir=dist/budget-frontend",
     "dev": "ng serve"
   },
   "private": true,
@@ -37,7 +38,7 @@
     "@angular/cli": "~12.2.4",
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.20.23",
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "@typescript-eslint/parser": "4.28.2",
     "angular-cli-ghpages": "^1.0.0-rc.2",

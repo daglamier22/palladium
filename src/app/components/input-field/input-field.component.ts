@@ -14,16 +14,16 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
   ]
 })
 export class InputFieldComponent implements OnInit, OnChanges, ControlValueAccessor {
-  @Input() id: string;
-  @Input() type = 'text';
-  @Input() value: string;
-  @Input() placeholder: string;
-  @Input() error: string;
-  @Input() disabled: boolean;
-  @Output() valueChanged = new EventEmitter<string>();
+  @Input() public id: string = '';
+  @Input() public type: string = 'text';
+  @Input() public value: string = '';
+  @Input() public placeholder: string = '';
+  @Input() public error: string = '';
+  @Input() public disabled: boolean = false;
+  @Output() private valueChanged = new EventEmitter<string>();
 
-  onChange = (val: string) => {};
-  onTouched = () => {};
+  public onChange: Function = (val: string) => {};
+  public onTouched: Function = () => {};
 
   constructor() { }
 
@@ -35,17 +35,20 @@ export class InputFieldComponent implements OnInit, OnChanges, ControlValueAcces
     this.onTouched();
   }
 
-  writeValue(value: string) {
-    this.value = value;
-    this.onChange(this.value);
-    this.valueChanged.emit(this.value);
+  public writeValue(event: Event): void {
+    const element = event.currentTarget as HTMLInputElement;
+    if (element) {
+      this.value = element.value;
+      this.onChange(this.value);
+      this.valueChanged.emit(this.value);
+    }
   }
 
-  registerOnChange(fn: any) {
+  public registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any) {
+  public registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 }

@@ -12,29 +12,28 @@ const serverURL = '/add-account';
   providedIn: 'root'
 })
 export class AddAccountService {
-  private loading: boolean;
+  private loading: boolean = false;
   private loadingChanged = new Subject<boolean>();
-  private serverResponse: AddAccountResponse;
+  private serverResponse!: AddAccountResponse;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
-  getLoading(): boolean {
+  public getLoading(): boolean {
     return this.loading;
   }
 
-  getLoadingChanged(): Observable<boolean> {
+  public getLoadingChanged(): Observable<boolean> {
     return this.loadingChanged.asObservable();
   }
 
-  getServerResponse(): AddAccountResponse {
+  public getServerResponse(): AddAccountResponse {
     return this.serverResponse;
   }
 
-  call(firmName: string, accountName: string, accountType: string, originalBalance: string,
-        currentBalance: string, interestRate: string, creditLimit: string, loanTerm: string, loanOriginationDate: string) {
+  public call(firmName: string, accountName: string, accountType: string, originalBalance: string, currentBalance: string, interestRate: string, creditLimit: string, loanTerm: string, loanOriginationDate: string): void {
     if (this.loading) {
       return;
     }

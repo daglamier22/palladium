@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject } from 'rxjs/internal/Subject';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import * as util from './util';
@@ -12,16 +11,16 @@ const versionURL = '/version';
   providedIn: 'root'
 })
 export class VersionService {
-  private versionBackend: string;
+  private versionBackend: string = '';
   private versionFrontend: string = environment.VERSION;
-  private loading: boolean;
+  private loading: boolean = false;
   private loadingChanged = new Subject<boolean>();
 
   constructor(
     private http: HttpClient
   ) {}
 
-  getVersionBackend(): string {
+  public getVersionBackend(): string {
     if (this.versionBackend) {
       return this.versionBackend;
     } else {
@@ -30,19 +29,19 @@ export class VersionService {
     }
   }
 
-  getVersionFrontend(): string {
+  public getVersionFrontend(): string {
     return this.versionFrontend;
   }
 
-  getLoading(): boolean {
+  public getLoading(): boolean {
     return this.loading;
   }
 
-  getLoadingChanged(): Observable<boolean> {
+  public getLoadingChanged(): Observable<boolean> {
     return this.loadingChanged.asObservable();
   }
 
-  private call() {
+  private call(): void {
       if (this.loading) {
       return;
     }
