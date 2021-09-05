@@ -1,26 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
-import { HomepageViewComponent } from './homepage-view.component';
+import { ViewAccountViewComponent } from './view-account-view.component';
 
-describe('HomepageComponent', () => {
-  let component: HomepageViewComponent;
-  let fixture: ComponentFixture<HomepageViewComponent>;
+describe('ViewAccountViewComponent', () => {
+  let component: ViewAccountViewComponent;
+  let fixture: ComponentFixture<ViewAccountViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule,
         HttpClientModule
       ],
       declarations: [
-        HomepageViewComponent
+        ViewAccountViewComponent
       ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomepageViewComponent);
+    fixture = TestBed.createComponent(ViewAccountViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

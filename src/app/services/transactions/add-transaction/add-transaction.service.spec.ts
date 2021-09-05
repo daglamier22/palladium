@@ -1,12 +1,21 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AddTransactionService } from './add-transaction.service';
 
 describe('AddTransactionService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: AddTransactionService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule
+      ]
+    });
+    service = TestBed.inject(AddTransactionService);
+  });
 
   it('should be created', () => {
-    const service: AddTransactionService = TestBed.get(AddTransactionService);
     expect(service).toBeTruthy();
   });
 });

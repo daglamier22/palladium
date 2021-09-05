@@ -12,8 +12,8 @@ import { AddTransactionResponse } from '../../services/transactions/add-transact
   styleUrls: ['./add-transaction-view.component.scss']
 })
 export class AddTransactionViewComponent implements OnInit {
-  transactionForm: FormGroup;
-  loading: boolean;
+  public transactionForm!: FormGroup;
+  public loading: boolean = false;
 
   constructor(
     private router: Router,
@@ -83,7 +83,9 @@ export class AddTransactionViewComponent implements OnInit {
       .keys(this.transactionForm.controls)
       .forEach(field => {
         const control = this.transactionForm.get(field);
-        control.markAsTouched({onlySelf: true});
+        if (control) {
+          control.markAsTouched({onlySelf: true});
+        }
       });
   }
 

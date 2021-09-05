@@ -6,17 +6,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent implements OnInit {
-  @Input() submit: boolean;
-  @Input() parentFunction: Function;
-  @Input() text: string;
-  @Input() disabled: boolean;
+  @Input() public submit: boolean = false;
+  @Input() private parentFunction: Function = () => {};
+  @Input() public text: string = '';
+  @Input() public disabled: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  callParentFunction() {
+  public callParentFunction(): void {
     if (this.parentFunction) {
       this.parentFunction();
     }

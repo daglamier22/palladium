@@ -12,8 +12,8 @@ import { AuthResponse } from '../../../services/auth/auth.model';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  loading: boolean;
+  public loginForm!: FormGroup;
+  public loading: boolean = false;
 
   constructor(
     private router: Router,
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.createFormGroup();
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.markControlsTouched();
     if (this.loginForm.valid) {
       const username = this.loginForm.controls.username.value;
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  createFormGroup(): FormGroup {
+  private createFormGroup(): FormGroup {
     return new FormGroup({
       username: new FormControl('', {
         validators: [Validators.required]
@@ -56,16 +56,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  markControlsTouched() {
+  public markControlsTouched(): void {
     Object
       .keys(this.loginForm.controls)
       .forEach(field => {
         const control = this.loginForm.get(field);
-        control.markAsTouched({onlySelf: true});
+        if (control) {
+          control.markAsTouched({onlySelf: true});
+        }
       });
   }
 
-  getFormControlErrors(controlName: string): string {
+  public getFormControlErrors(controlName: string): string {
     const control = this.loginForm.get(controlName);
     if (control && control.touched && control.errors) {
       if (control.errors.required) {

@@ -8,7 +8,7 @@ import { Account } from '../../services/accounts/get-accounts/get-accounts.model
   styleUrls: ['./overview-view.component.scss']
 })
 export class OverviewViewComponent implements OnInit {
-  accounts: Account[];
+  public accounts: Account[] = [];
 
   constructor(
     private getAccountsService: GetAccountsService

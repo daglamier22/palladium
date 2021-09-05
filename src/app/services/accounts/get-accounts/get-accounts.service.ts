@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import * as util from '../../util';
 import { AuthService } from '../../auth/auth.service';
-import { GetAccountResponse } from './get-accounts.model';
+import { Account, GetAccountResponse } from './get-accounts.model';
 
 const signupURL = '/get-accounts';
 
@@ -12,28 +12,28 @@ const signupURL = '/get-accounts';
   providedIn: 'root'
 })
 export class GetAccountsService {
-  private loading: boolean;
+  private loading: boolean = false;
   private loadingChanged = new Subject<boolean>();
-  private serverResponse: GetAccountResponse;
+  private serverResponse!: GetAccountResponse;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
-  getLoading(): boolean {
+  public getLoading(): boolean {
     return this.loading;
   }
 
-  getLoadingChanged(): Observable<boolean> {
+  public getLoadingChanged(): Observable<boolean> {
     return this.loadingChanged.asObservable();
   }
 
-  getServerResponse(): GetAccountResponse {
+  public getServerResponse(): GetAccountResponse {
     return this.serverResponse;
   }
 
-  call() {
+  public call(): void {
     if (this.loading) {
       return;
     }
@@ -64,7 +64,7 @@ export class GetAccountsService {
     });
   }
 
-  getAccount(id: string) {
+  public getAccount(id: string): Account | null {
     if (this.serverResponse) {
       for (const account of this.serverResponse.values.accounts) {
         console.log(account);
@@ -73,6 +73,6 @@ export class GetAccountsService {
         }
       }
     }
-    return undefined;
+    return null;
   }
 }

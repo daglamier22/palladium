@@ -1,12 +1,21 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { VersionService } from './version.service';
 
 describe('VersionService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: VersionService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule
+      ]
+    });
+    service = TestBed.inject(VersionService);
+  });
 
   it('should be created', () => {
-    const service: VersionService = TestBed.get(VersionService);
     expect(service).toBeTruthy();
   });
 });

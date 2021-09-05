@@ -12,54 +12,54 @@ const loginURL = '/login';
   providedIn: 'root'
 })
 export class AuthService {
-  private loadingSignup: boolean;
+  private loadingSignup: boolean = false;
   private loadingChangedSignup = new Subject<boolean>();
-  private serverResponseSignup: AuthResponse;
-  private loadingLogin: boolean;
+  private serverResponseSignup!: AuthResponse;
+  private loadingLogin: boolean = false;
   private loadingChangedLogin = new Subject<boolean>();
-  private serverResponseLogin: AuthResponse;
+  private serverResponseLogin!: AuthResponse;
 
-  private loggedIn: boolean;
+  private loggedIn: boolean = false;
   private loggedInChanged = new BehaviorSubject<boolean>(false);
-  private token: string;
+  private token: string | null = '';
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getLoadingSignup(): boolean {
+  public getLoadingSignup(): boolean {
     return this.loadingSignup;
   }
 
-  getLoadingChangedSignup(): Observable<boolean> {
+  public getLoadingChangedSignup(): Observable<boolean> {
     return this.loadingChangedSignup.asObservable();
   }
 
-  getServerResponseSignup(): AuthResponse {
+  public getServerResponseSignup(): AuthResponse {
     return this.serverResponseSignup;
   }
 
-  getLoadingLogin(): boolean {
+  public getLoadingLogin(): boolean {
     return this.loadingLogin;
   }
 
-  getLoadingChangedLogin(): Observable<boolean> {
+  public getLoadingChangedLogin(): Observable<boolean> {
     return this.loadingChangedLogin.asObservable();
   }
 
-  getServerResponseLogin(): AuthResponse {
+  public getServerResponseLogin(): AuthResponse {
     return this.serverResponseLogin;
   }
 
-  isLoggedIn() {
+  public isLoggedIn(): boolean {
     return this.loggedIn;
   }
 
-  getLoggedInChanged(): Observable<boolean> {
+  public getLoggedInChanged(): Observable<boolean> {
     return this.loggedInChanged.asObservable();
   }
 
-  checkForToken() {
+  public checkForToken(): void {
     if (localStorage.getItem('token')) {
       this.loggedIn = true;
       this.loggedInChanged.next(this.loggedIn);
@@ -67,19 +67,19 @@ export class AuthService {
     }
   }
 
-  getToken(): string {
+  public getToken(): string | null {
     return this.token;
   }
 
-  private setToken(token: string) {
+  private setToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
-  private deleteToken() {
+  private deleteToken(): void {
     localStorage.removeItem('token');
   }
 
-  signup(username: string, password: string, confirmPassword: string) {
+  public signup(username: string, password: string, confirmPassword: string): void {
     if (this.loadingSignup) {
       return;
     }
@@ -108,9 +108,9 @@ export class AuthService {
         message: error,
         status: 'FAILURE',
         values: {
-          id: undefined,
-          token: undefined,
-          userId: undefined
+          id: '',
+          token: '',
+          userId: ''
         }
       };
       this.loadingSignup = false;
@@ -118,7 +118,7 @@ export class AuthService {
     });
   }
 
-  login(username: string, password: string) {
+  public login(username: string, password: string): void {
     if (this.loadingLogin) {
       return;
     }
@@ -151,9 +151,9 @@ export class AuthService {
         message: error,
         status: 'FAILURE',
         values: {
-          id: undefined,
-          token: undefined,
-          userId: undefined
+          id: '',
+          token: '',
+          userId: ''
         }
       };
       this.loadingLogin = false;
@@ -161,7 +161,7 @@ export class AuthService {
     });
   }
 
-  logout() {
+  public logout(): void {
     this.loggedIn = false;
     this.loggedInChanged.next(this.loggedIn);
     this.deleteToken();
