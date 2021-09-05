@@ -9,7 +9,7 @@ import { GetTransactionsService } from '../../services/transactions/get-transact
   styleUrls: ['./view-account-view.component.scss']
 })
 export class ViewAccountViewComponent implements OnInit {
-  transactions: Transaction[];
+  public transactions: Transaction[] = [];
 
   constructor(
     private getTransactionsService: GetTransactionsService

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HomepageViewComponent } from './homepage-view.component';
@@ -7,8 +7,8 @@ describe('HomepageComponent', () => {
   let component: HomepageViewComponent;
   let fixture: ComponentFixture<HomepageViewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         HttpClientModule
       ],
@@ -17,7 +17,7 @@ describe('HomepageComponent', () => {
       ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomepageViewComponent);

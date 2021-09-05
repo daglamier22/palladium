@@ -12,8 +12,8 @@ import { AuthResponse } from '../../../services/auth/auth.model';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  signupForm: FormGroup;
-  loading: boolean;
+  public signupForm!: FormGroup;
+  public loading: boolean = false;
 
   constructor(
     private router: Router,
@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.createFormGroup();
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.markControlsTouched();
     if (this.signupForm.valid && this.signupForm.controls.password.value === this.signupForm.controls.confirmPassword.value) {
       if (this.signupForm.controls.password.value === this.signupForm.controls.confirmPassword.value) {
@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  createFormGroup(): FormGroup {
+  private createFormGroup(): FormGroup {
     return new FormGroup({
       username: new FormControl('', {
         validators: [Validators.required]
@@ -67,23 +67,25 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  markControlsTouched() {
+  private markControlsTouched(): void {
     Object
       .keys(this.signupForm.controls)
       .forEach(field => {
         const control = this.signupForm.get(field);
-        control.markAsTouched({onlySelf: true});
+        if (control) {
+          control.markAsTouched({onlySelf: true});
+        }
       });
   }
 
-  passwordsMatch(): boolean {
+  public passwordsMatch(): boolean {
     if (this.signupForm.controls.password.value === this.signupForm.controls.confirmPassword.value) {
       return true;
     }
     return false;
   }
 
-  getFormControlErrors(controlName: string): string {
+  public getFormControlErrors(controlName: string): string {
     const control = this.signupForm.get(controlName);
     if (control && control.touched && control.errors) {
       if (control.errors.required) {

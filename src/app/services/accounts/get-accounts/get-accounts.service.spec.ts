@@ -4,14 +4,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { GetAccountsService } from './get-accounts.service';
 
 describe('GetAccountsService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [
-      HttpClientModule
-    ]
-  }));
+  let service: GetAccountsService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule
+      ]
+    });
+    service = TestBed.inject(GetAccountsService);
+  });
 
   it('should be created', () => {
-    const service: GetAccountsService = TestBed.get(GetAccountsService);
     expect(service).toBeTruthy();
   });
 });

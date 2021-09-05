@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import * as util from '../../util';
 import { AuthService } from '../../auth/auth.service';
-import { GetTransactionsResponse } from './get-transactions.model';
+import { GetTransactionsResponse, Transaction } from './get-transactions.model';
 
 const signupURL = '/get-all-transactions';
 
@@ -12,28 +12,28 @@ const signupURL = '/get-all-transactions';
   providedIn: 'root'
 })
 export class GetTransactionsService {
-  private loading: boolean;
+  private loading: boolean = false;
   private loadingChanged = new Subject<boolean>();
-  private serverResponse: GetTransactionsResponse;
+  private serverResponse!: GetTransactionsResponse;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
-  getLoading(): boolean {
+  public getLoading(): boolean {
     return this.loading;
   }
 
-  getLoadingChanged(): Observable<boolean> {
+  public getLoadingChanged(): Observable<boolean> {
     return this.loadingChanged.asObservable();
   }
 
-  getServerResponse(): GetTransactionsResponse {
+  public getServerResponse(): GetTransactionsResponse {
     return this.serverResponse;
   }
 
-  call() {
+  public call(): void {
     if (this.loading) {
       return;
     }
@@ -64,7 +64,7 @@ export class GetTransactionsService {
     });
   }
 
-  getTransaction(id: string) {
+  public getTransaction(id: string): Transaction | null {
     if (this.serverResponse) {
       for (const transaction of this.serverResponse.values.transactions) {
         console.log(transaction);
@@ -73,6 +73,6 @@ export class GetTransactionsService {
         }
       }
     }
-    return undefined;
+    return null;
   }
 }
