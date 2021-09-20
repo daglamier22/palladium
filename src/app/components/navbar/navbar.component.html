@@ -1,34 +1,115 @@
-<header class="main-header">
-  <div>
-      <button class="toggle-button" (click)="onToggleHamburgerMenu()">
-        <span class="toggle-button__bar"></span>
-        <span class="toggle-button__bar"></span>
-        <span class="toggle-button__bar"></span>
-      </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand"
+       [routerLink]="['/']"
+       data-bs-toggle="collapse"
+       data-bs-target=".navbar-collapse.show"
+       (click)="isHamburgerMenuOpen = false">
+      Budget
+    </a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target=".multiple-collapse"
+            (click)="isHamburgerMenuOpen = !isHamburgerMenuOpen"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse multiple-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link"
+              [routerLink]="['/']"
+              [routerLinkActiveOptions]="{exact:true}"
+              [routerLinkActive]="['active']"
+              data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show"
+              (click)="isHamburgerMenuOpen = false">
+            Home
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link"
+              [routerLink]="['/overview']"
+              [routerLinkActive]="['active']"
+              data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show"
+              (click)="isHamburgerMenuOpen = false">
+            Overview
+          </a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="isLoggedIn">
+          <a class="nav-link dropdown-toggle" href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false">
+            Actions
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item"
+                  [routerLink]="['/add-account']"
+                  [routerLinkActive]="['active']"
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                  (click)="isHamburgerMenuOpen = false">
+                Add Account
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item"
+                  [routerLink]="['/add-transaction']"
+                  [routerLinkActive]="['active']"
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                  (click)="isHamburgerMenuOpen = false">
+                Add Transaction
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link"
+              [routerLink]="['/login']"
+              [routerLinkActive]="['active']"
+              data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show"
+              (click)="isHamburgerMenuOpen = false">
+            Login
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link"
+              (click)="onLogout()"
+              href="javascript:void(0)"
+              data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show"
+              (click)="isHamburgerMenuOpen = false">
+            Logout
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link"
+              [routerLink]="['/signup']"
+              [routerLinkActive]="['active']"
+              data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show"
+              (click)="isHamburgerMenuOpen = false">
+            Signup
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <nav class="main-nav" [ngClass]="{ 'mobile-nav-open': isHamburgerMenuOpen }">
-    <ul class="main-nav__items">
-      <li class="main-nav__item">
-        <a class="main-nav__link" href="javascript:void(0)" (click)="onHome()" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-      </li>
-      <li class="main-nav__item" *ngIf="isLoggedIn">
-        <a class="main-nav__link" href="javascript:void(0)" (click)="onOverview()"  routerLinkActive="router-link-active">Overview</a>
-      </li>
-      <li class="main-nav__item" *ngIf="isLoggedIn">
-        <a class="main-nav__link" href="javascript:void(0)" (click)="onAddAccount()" routerLinkActive="router-link-active">Add Account</a>
-      </li>
-      <li class="main-nav__item" *ngIf="isLoggedIn">
-        <a class="main-nav__link" href="javascript:void(0)" (click)="onAddTransaction()" routerLinkActive="router-link-active">Add Transaction</a>
-      </li>
-      <li class="navbar-list__item" *ngIf="!isLoggedIn">
-        <a class="main-nav__link" href="javascript:void(0)" (click)="onLogin()" routerLinkActive="router-link-active">Login</a>
-      </li>
-      <li class="main-nav__item" *ngIf="isLoggedIn">
-        <a class="main-nav__link" href="javascript:void(0)" (click)="onLogout()">Logout</a>
-      </li>
-      <li class="main-nav__item" *ngIf="!isLoggedIn">
-        <a class="main-nav__link" href="javascript:void(0)" (click)="onSignup()" routerLinkActive="router-link-active">Signup</a>
-      </li>
-    </ul>
-  </nav>
-</header>
+</nav>
+<ng-container *ngIf="isHamburgerMenuOpen">
+  <div class="clickable-background"
+        data-bs-toggle="collapse"
+        data-bs-target=".navbar-collapse.show"
+        (click)="isHamburgerMenuOpen = false">
+  </div>
+</ng-container>

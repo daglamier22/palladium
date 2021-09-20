@@ -20,6 +20,7 @@ export class InputFieldComponent implements OnInit, OnChanges, ControlValueAcces
   @Input() public placeholder: string = '';
   @Input() public error: string = '';
   @Input() public disabled: boolean = false;
+  @Input() public label: string = '';
   @Output() private valueChanged = new EventEmitter<string>();
 
   public onChange: Function = (val: string) => {};
