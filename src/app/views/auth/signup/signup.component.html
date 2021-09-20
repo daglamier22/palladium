@@ -1,30 +1,29 @@
 <form [formGroup]="signupForm" (submit)="onSubmit()">
-  <div>
-    <label for="username">User Name</label>
-    <app-input-field
-      id="username"
-      placeholder="Enter a username"
-      formControlName="username"
-      [error]="getFormControlErrors('username')">
-    </app-input-field>
-    <label for="password">Password</label>
-    <app-input-field
-      id="password"
-      type="password"
-      placeholder="Enter a password"
-      formControlName="password"
-      [error]="getFormControlErrors('password')">
-    </app-input-field>
-    <label for="confirmPassword">Confirm Password</label>
-    <app-input-field
-      id="confirmPassword"
-      type="password"
-      placeholder="Confirm a password"
-      formControlName="confirmPassword"
-      [error]="getFormControlErrors('confirmPassword')">
-    </app-input-field>
-    <hr>
-    <p *ngIf="!passwordsMatch()">Passwords do not match!</p>
+  <app-input-field
+    id="username"
+    placeholder="Enter a username"
+    formControlName="username"
+    label="User Name"
+    [error]="getFormControlErrors('username')">
+  </app-input-field>
+  <app-input-field
+    id="password"
+    type="password"
+    placeholder="Enter a password"
+    formControlName="password"
+    label="Password"
+    [error]="getFormControlErrors('password')">
+  </app-input-field>
+  <app-input-field
+    id="confirmPassword"
+    type="password"
+    placeholder="Confirm a password"
+    formControlName="confirmPassword"
+    label="Confirm Password"
+    [error]="getFormControlErrors('confirmPassword')">
+  </app-input-field>
+  <div class="mb-3">
+    <p class="form-text text-danger" *ngIf="!passwordsMatch()">Passwords do not match!</p>
     <app-button
       [disabled]="!signupForm.valid"
       text="Signup"
