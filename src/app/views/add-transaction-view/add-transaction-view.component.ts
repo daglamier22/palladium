@@ -24,7 +24,7 @@ export class AddTransactionViewComponent implements OnInit {
     this.transactionForm = this.createFormGroup();
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.markControlsTouched();
     if (this.transactionForm.valid) {
       const date = this.transactionForm.controls.date.value;
@@ -51,7 +51,7 @@ export class AddTransactionViewComponent implements OnInit {
     }
   }
 
-  createFormGroup(): FormGroup {
+  private createFormGroup(): FormGroup {
     return new FormGroup({
       date: new FormControl('', {
         validators: [Validators.required]
@@ -78,7 +78,7 @@ export class AddTransactionViewComponent implements OnInit {
     });
   }
 
-  markControlsTouched() {
+  private markControlsTouched(): void {
     Object
       .keys(this.transactionForm.controls)
       .forEach(field => {
@@ -89,7 +89,7 @@ export class AddTransactionViewComponent implements OnInit {
       });
   }
 
-  getFormControlErrors(controlName: string): string {
+  public getFormControlErrors(controlName: string): string {
     const control = this.transactionForm.get(controlName);
     if (control && control.touched && control.errors) {
       if (control.errors.required) {
