@@ -1,74 +1,85 @@
-{{accountId}}
-<form [formGroup]="accountForm" (submit)="onSubmit()">
-  <div>
-    <label for="firmName">Firm Name</label>
-    <app-input-field
-      id="firmName"
-      placeholder="Enter the firm name"
-      formControlName="firmName"
-      [error]="getFormControlErrors('firmName')">
-    </app-input-field>
-    <label for="accountName">Account Name</label>
-    <app-input-field
-      id="accountName"
-      placeholder="Enter an account name"
-      formControlName="accountName"
-      [error]="getFormControlErrors('accountName')">
-    </app-input-field>
-    <label for="accountType">Account Type</label>
-    <app-input-field
-      id="accountType"
-      placeholder="Enter the account type"
-      formControlName="accountType"
-      [error]="getFormControlErrors('accountType')">
-    </app-input-field>
-    <label for="originalBalance">Original Balance</label>
-    <app-input-field
-      id="originalBalance"
-      placeholder="Enter the original balance"
-      formControlName="originalBalance"
-      [error]="getFormControlErrors('originalBalance')">
-    </app-input-field>
-    <label for="currentBalance">Current Balance</label>
-    <app-input-field
-      id="currentBalance"
-      placeholder="Enter the current balance"
-      formControlName="currentBalance"
-      [error]="getFormControlErrors('currentBalance')">
-    </app-input-field>
-    <label for="interestRate">Interest Rate</label>
-    <app-input-field
-      id="interestRate"
-      placeholder="Enter the interest rate"
-      formControlName="interestRate"
-      [error]="getFormControlErrors('interestRate')">
-    </app-input-field>
-    <label for="creditLimit">Credit Limit</label>
-    <app-input-field
-      id="creditLimit"
-      placeholder="Enter your credit limit"
-      formControlName="creditLimit"
-      [error]="getFormControlErrors('creditLimit')">
-    </app-input-field>
-    <label for="loanTerm">Loan Term</label>
-    <app-input-field
-      id="loanTerm"
-      placeholder="Enter your loan term"
-      formControlName="loanTerm"
-      [error]="getFormControlErrors('loanTerm')">
-    </app-input-field>
-    <label for="loanOriginationDate">Loan Origination Date</label>
-    <app-input-field
-      id="loanOriginationDate"
-      placeholder="Enter your loan origination date"
-      formControlName="loanOriginationDate"
-      [error]="getFormControlErrors('loanOriginationDate')">
-    </app-input-field>
-    <hr>
-    <app-button
-      [disabled]="!accountForm.valid"
-      text="Submit"
-      [submit]="true">
-    </app-button>
-  </div>
-</form>
+<div class="container-fluid">
+  <p>{{accountId}}</p>
+  <form [formGroup]="accountForm" (submit)="onSubmit()">
+    <div>
+      <app-input-field
+        id="firmName"
+        placeholder="Enter the firm name"
+        formControlName="firmName"
+        label="Firm Name"
+        [value]="accountForm?.controls?.firmName?.value"
+        [error]="getFormControlErrors('firmName')">
+      </app-input-field>
+      <app-input-field
+        id="accountName"
+        placeholder="Enter an account name"
+        formControlName="accountName"
+        label="Account Name"
+        [value]="accountForm?.controls?.accountName?.value"
+        [error]="getFormControlErrors('accountName')">
+      </app-input-field>
+      <app-input-field
+        id="accountType"
+        placeholder="Enter the account type"
+        formControlName="accountType"
+        label="Account Type"
+        [value]="accountForm?.controls?.accountType?.value"
+        [error]="getFormControlErrors('accountType')">
+      </app-input-field>
+      <app-input-field
+        id="originalBalance"
+        placeholder="Enter the original balance"
+        formControlName="originalBalance"
+        label="Original Balance"
+        [value]="accountForm?.controls?.originalBalance?.value"
+        [error]="getFormControlErrors('originalBalance')">
+      </app-input-field>
+      <app-input-field
+        id="currentBalance"
+        placeholder="Enter the current balance"
+        formControlName="currentBalance"
+        label="Current Balance"
+        [value]="accountForm?.controls?.currentBalance?.value"
+        [error]="getFormControlErrors('currentBalance')">
+      </app-input-field>
+      <app-input-field
+        id="interestRate"
+        placeholder="Enter the interest rate"
+        formControlName="interestRate"
+        label="Interest Rate"
+        [value]="accountForm?.controls?.interestRate?.value"
+        [error]="getFormControlErrors('interestRate')">
+      </app-input-field>
+      <app-input-field
+        id="creditLimit"
+        placeholder="Enter your credit limit"
+        formControlName="creditLimit"
+        label="Credit Limit"
+        [value]="accountForm?.controls?.creditLimit?.value"
+        [error]="getFormControlErrors('creditLimit')">
+      </app-input-field>
+      <app-input-field
+        id="loanTerm"
+        placeholder="Enter your loan term"
+        formControlName="loanTerm"
+        label="Loan Term"
+        [value]="accountForm?.controls?.loanTerm?.value"
+        [error]="getFormControlErrors('loanTerm')">
+      </app-input-field>
+      <app-input-field
+        id="loanOriginationDate"
+        placeholder="Enter your loan origination date"
+        formControlName="loanOriginationDate"
+        label="Loan Origination Date"
+        [value]="accountForm?.controls?.loanOriginationDate?.value"
+        [error]="getFormControlErrors('loanOriginationDate')">
+      </app-input-field>
+      <hr>
+      <app-button
+        [disabled]="!accountForm.valid"
+        text="Submit"
+        [submit]="true">
+      </app-button>
+    </div>
+  </form>
+</div>
