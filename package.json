@@ -1,20 +1,28 @@
 {
-  "name": "budget-frontend",
+  "name": "palladium",
   "version": "0.0.11",
   "description": "Angular frontend for personal budget app",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node app.js",
+    "heroku-postbuild": "ng build --configuration production",
     "build:dev": "ng build --configuration development",
     "build:prod": "ng build --configuration production",
     "test": "ng test",
     "lint": "ng lint",
-    "deploy": "ng build --configuration production --base-href 'https://daglamier22.github.io/budget-frontend/' && ngh --dir=dist/budget-frontend",
     "dev": "ng serve"
   },
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daglamier22/palladium.git"
+  },
   "author": "Brian McCarthy <daglamier22@gmail.com>",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daglamier22/palladium/issues"
+  },
+  "homepage": "https://github.com/daglamier22/palladium#readme",
   "dependencies": {
     "@angular/animations": "~12.2.0",
     "@angular/common": "~12.2.0",
@@ -25,11 +33,13 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "bootstrap": "^5.1.1",
+    "express": "^4.17.1",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "set-value": ">=4.0.1",
     "tslib": "^2.3.0",
+    "typescript": "~4.3.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -45,14 +55,17 @@
     "@types/node": "^12.20.23",
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "@typescript-eslint/parser": "4.28.2",
-    "angular-cli-ghpages": "^1.0.0-rc.2",
+    "enhanced-resolve": "^3.3.0",
     "eslint": "^7.26.0",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.7.0",
-    "typescript": "~4.3.5"
+    "karma-jasmine-html-reporter": "^1.7.0"
+  },
+  "engines": {
+    "node": "16.9.1",
+    "npm": "7.24.0"
   }
 }
