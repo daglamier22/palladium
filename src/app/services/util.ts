@@ -9,11 +9,19 @@ export function determineServerURL(): string {
       destinationPort: 3000
     },
     {
+      serverName: 'LOCAL',
+      hostName: 'localhost',
+      sourcePort: '8080',
+      destinationProtocol: 'http',
+      destinationHostName: 'localhost',
+      destinationPort: 3000
+    },
+    {
       serverName: 'DEV',
-      hostName: 'daglamier22.github.io',
+      hostName: 'budget-palladium.herokuapp.com',
       sourcePort: '443',
       destinationProtocol: 'https',
-      destinationHostName: 'budget22.herokuapp.com',
+      destinationHostName: 'budget-vibranium.herokuapp.com',
       destinationPort: 443
     }
   ];
