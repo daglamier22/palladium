@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "budget-frontend": {
+    "palladium": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/budget-frontend",
+            "outputPath": "dist/palladium",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "budget-frontend:build:production"
+              "browserTarget": "palladium:build:production"
             },
             "development": {
-              "browserTarget": "budget-frontend:build:development"
+              "browserTarget": "palladium:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "budget-frontend:build"
+            "browserTarget": "palladium:build"
           }
         },
         "test": {
@@ -121,7 +121,7 @@
       }
     }
   },
-  "defaultProject": "budget-frontend",
+  "defaultProject": "palladium",
   "cli": {
     "defaultCollection": "@angular-eslint/schematics"
   }
