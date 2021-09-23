@@ -1,5 +1,7 @@
 # BudgetFrontend
 
+[![build status](https://github.com/daglamier22/palladium/workflows/Angular%2fNode.js%20CI/badge.svg)](https://github.com/daglamier22/palladium/actions)
+
 Front-end application for personal budget management. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.4.
 
 ## Development server
