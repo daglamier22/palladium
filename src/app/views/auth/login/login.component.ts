@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           (loading: boolean) => {
             this.loading = loading;
             const response: AuthResponse = this.authService.getServerResponseLogin();
-            if (response.status === 'SUCCESS') {
+            if (response.apiStatus === 'SUCCESS') {
               this.router.navigate(['/overview']);
             }
           }

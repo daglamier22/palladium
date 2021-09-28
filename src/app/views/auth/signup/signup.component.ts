@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
           (loading: boolean) => {
             this.loading = loading;
             const response: AuthResponse = this.authService.getServerResponseSignup();
-            if (response.status === 'SUCCESS') {
+            if (response.apiStatus === 'SUCCESS') {
               this.router.navigate(['/login']);
             }
           }
