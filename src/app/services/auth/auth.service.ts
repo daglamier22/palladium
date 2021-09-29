@@ -108,7 +108,6 @@ export class AuthService {
         apiMessage: error,
         apiStatus: 'FAILURE',
         values: {
-          id: '',
           token: '',
           userId: ''
         }
@@ -151,7 +150,6 @@ export class AuthService {
         apiMessage: error,
         apiStatus: 'FAILURE',
         values: {
-          id: '',
           token: '',
           userId: ''
         }

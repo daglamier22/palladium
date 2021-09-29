@@ -13,7 +13,6 @@ export interface AuthResponse {
   apiMessage: string;
   apiStatus: string;
   values: {
-    id: string;
     token: string;
     userId: string;
   }
