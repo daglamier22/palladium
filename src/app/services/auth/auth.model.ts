@@ -10,10 +10,9 @@ export interface LoginPayload {
 }
 
 export interface AuthResponse {
-  message: string;
-  status: string;
+  apiMessage: string;
+  apiStatus: string;
   values: {
-    id: string;
     token: string;
     userId: string;
   }

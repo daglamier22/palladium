@@ -105,10 +105,9 @@ export class AuthService {
     }, (error) => {
       console.log('AuthService signup: ', error);
       this.serverResponseSignup = {
-        message: error,
-        status: 'FAILURE',
+        apiMessage: error,
+        apiStatus: 'FAILURE',
         values: {
-          id: '',
           token: '',
           userId: ''
         }
@@ -138,7 +137,7 @@ export class AuthService {
       { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
     ).subscribe((response: any) => {
       this.serverResponseLogin = { ... response };
-      if (this.serverResponseLogin.status === 'SUCCESS') {
+      if (this.serverResponseLogin.apiStatus === 'SUCCESS') {
         this.loggedIn = true;
         this.loggedInChanged.next(this.loggedIn);
         this.setToken(this.serverResponseLogin.values.token);
@@ -148,10 +147,9 @@ export class AuthService {
     }, (error) => {
       console.log('AuthService login: ', error);
       this.serverResponseLogin = {
-        message: error,
-        status: 'FAILURE',
+        apiMessage: error,
+        apiStatus: 'FAILURE',
         values: {
-          id: '',
           token: '',
           userId: ''
         }
