@@ -112,7 +112,7 @@ export class EditAccountViewComponent implements OnInit {
         (loading: boolean) => {
           this.loading = loading;
           const response: EditAccountResponse = this.editAccountsService.getServerResponse();
-          if (response.status === 'SUCCESS') {
+          if (response.apiStatus === 'SUCCESS') {
             this.router.navigate(['/overview']);
           }
         }

@@ -42,7 +42,7 @@ export class AddAccountViewComponent implements OnInit {
         (loading: boolean) => {
           this.loading = loading;
           const response: AddAccountResponse = this.addAccountsService.getServerResponse();
-          if (response.status === 'SUCCESS') {
+          if (response.apiStatus === 'SUCCESS') {
             this.router.navigate(['/overview']);
           }
         }
