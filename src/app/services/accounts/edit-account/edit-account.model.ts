@@ -12,6 +12,7 @@ export interface EditAccountPayload {
 }
 
 export interface EditAccountResponse {
-  message: string;
-  status: string;
+  apiMessage: string;
+  apiStatus: string;
+  errorCode: number;
 }
