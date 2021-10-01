@@ -1,6 +1,7 @@
 export interface GetAccountResponse {
-  message: string;
-  status: string;
+  apiMessage: string;
+  apiStatus: string;
+  errorCode: number;
   values: {
     accounts: Account[];
   };

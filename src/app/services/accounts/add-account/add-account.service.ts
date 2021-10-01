@@ -66,8 +66,9 @@ export class AddAccountService {
     }, (error) => {
       console.log('AddAccountsService call: ', error);
       this.serverResponse = {
-        message: error,
-        status: 'FAILURE'
+        apiMessage: error,
+        apiStatus: 'FAILURE',
+        errorCode: 999
       };
       this.loading = false;
       this.loadingChanged.next(this.loading);

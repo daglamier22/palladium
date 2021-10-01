@@ -11,6 +11,7 @@ export interface AddAccountPayload {
 }
 
 export interface AddAccountResponse {
-  message: string;
-  status: string;
+  apiMessage: string;
+  apiStatus: string;
+  errorCode: number;
 }
