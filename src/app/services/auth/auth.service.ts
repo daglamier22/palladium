@@ -5,8 +5,8 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import * as util from '../util';
 import { SignupPayload, LoginPayload, AuthResponse } from './auth.model';
 
-const signupURL = '/signup';
-const loginURL = '/login';
+const signupURL = '/auth/signup';
+const loginURL = '/auth/login';
 
 @Injectable({
   providedIn: 'root'

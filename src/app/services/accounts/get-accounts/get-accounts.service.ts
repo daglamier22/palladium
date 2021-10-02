@@ -6,7 +6,7 @@ import * as util from '../../util';
 import { AuthService } from '../../auth/auth.service';
 import { Account, GetAccountResponse } from './get-accounts.model';
 
-const signupURL = '/get-accounts';
+const serverURL = '/accounts/getAccounts';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,7 @@ export class GetAccountsService {
     this.loading = true;
     this.loadingChanged.next(this.loading);
 
-    const fullURL = util.determineServerURL() + signupURL;
+    const fullURL = util.determineServerURL() + serverURL;
     this.http.get<GetAccountResponse>(
       fullURL,
       { headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.getToken()}`}) }
