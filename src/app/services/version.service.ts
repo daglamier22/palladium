@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import * as util from './util';
 
-const versionURL = '/version';
+const versionURL = '/tests/version';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +57,7 @@ export class VersionService {
       }
     ).subscribe((response: any) => {
       try {
-        this.versionBackend = response.message;
+        this.versionBackend = response.apiMessage;
       } catch (err) {
         this.versionBackend = 'Parsing Error';
       }
