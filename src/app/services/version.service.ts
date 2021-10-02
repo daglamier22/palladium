@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import * as util from './util';
 
-const versionURL = '/version';
+const versionURL = '/tests/version';
 
 @Injectable({
   providedIn: 'root'

@@ -6,7 +6,7 @@ import * as util from '../../util';
 import { AuthService } from '../../auth/auth.service';
 import { AddAccountResponse, AddAccountPayload } from './add-account.model';
 
-const serverURL = '/addAccount';
+const serverURL = '/accounts/addAccount';
 
 @Injectable({
   providedIn: 'root'
