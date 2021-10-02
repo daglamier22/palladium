@@ -57,7 +57,7 @@ export class VersionService {
       }
     ).subscribe((response: any) => {
       try {
-        this.versionBackend = response.message;
+        this.versionBackend = response.apiMessage;
       } catch (err) {
         this.versionBackend = 'Parsing Error';
       }
