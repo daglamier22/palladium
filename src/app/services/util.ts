@@ -23,6 +23,14 @@ export function determineServerURL(): string {
       destinationProtocol: 'https',
       destinationHostName: 'budget-vibranium.herokuapp.com',
       destinationPort: 443
+    },
+    {
+      serverName: 'DEV',
+      hostName: 'palladium.bmcc.digital',
+      sourcePort: '443',
+      destinationProtocol: 'https',
+      destinationHostName: 'vibranium.bmcc.digital',
+      destinationPort: 443
     }
   ];
   let port = 80;
