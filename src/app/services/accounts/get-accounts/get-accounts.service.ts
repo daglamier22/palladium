@@ -47,7 +47,6 @@ export class GetAccountsService {
       { headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.getToken()}`}) }
     ).subscribe((response: GetAccountResponse) => {
       this.serverResponse = { ...response };
-      console.log(this.serverResponse);
       this.loading = false;
       this.loadingChanged.next(this.loading);
     }, (error) => {
@@ -68,7 +67,6 @@ export class GetAccountsService {
   public getAccount(id: string): Account | null {
     if (this.serverResponse) {
       for (const account of this.serverResponse.values.accounts) {
-        console.log(account);
         if (account._id === id) {
           return account;
         }
