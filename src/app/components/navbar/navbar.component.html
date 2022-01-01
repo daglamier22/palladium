@@ -1,115 +1,65 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand"
-       [routerLink]="['/']"
-       data-bs-toggle="collapse"
-       data-bs-target=".navbar-collapse.show"
-       (click)="isHamburgerMenuOpen = false">
-      Budget
-    </a>
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target=".multiple-collapse"
-            (click)="isHamburgerMenuOpen = !isHamburgerMenuOpen"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="title">McHA</span>
+  <span class="spacer"></span>
+  <button mat-flat-button
+      color="primary"
+      [routerLink]="['/']"
+      [routerLinkActiveOptions]="{exact:true}"
+      [routerLinkActive]="['mat-accent']">
+    Home
+  </button>
+  <ng-container *ngIf="isLoggedIn">
+    <button mat-flat-button
+        color="primary"
+        [routerLink]="['/overview']"
+        [routerLinkActive]="['mat-accent']">
+      Overview
     </button>
-    <div class="collapse navbar-collapse multiple-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link"
-              [routerLink]="['/']"
-              [routerLinkActiveOptions]="{exact:true}"
-              [routerLinkActive]="['active']"
-              data-bs-toggle="collapse"
-              data-bs-target=".navbar-collapse.show"
-              (click)="isHamburgerMenuOpen = false">
-            Home
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
-          <a class="nav-link"
-              [routerLink]="['/overview']"
-              [routerLinkActive]="['active']"
-              data-bs-toggle="collapse"
-              data-bs-target=".navbar-collapse.show"
-              (click)="isHamburgerMenuOpen = false">
-            Overview
-          </a>
-        </li>
-        <li class="nav-item dropdown" *ngIf="isLoggedIn">
-          <a class="nav-link dropdown-toggle" href="#"
-              id="navbarDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false">
-            Actions
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-              <a class="dropdown-item"
-                  [routerLink]="['/add-account']"
-                  [routerLinkActive]="['active']"
-                  data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show"
-                  (click)="isHamburgerMenuOpen = false">
-                Add Account
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item"
-                  [routerLink]="['/add-transaction']"
-                  [routerLinkActive]="['active']"
-                  data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show"
-                  (click)="isHamburgerMenuOpen = false">
-                Add Transaction
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item" *ngIf="!isLoggedIn">
-          <a class="nav-link"
-              [routerLink]="['/login']"
-              [routerLinkActive]="['active']"
-              data-bs-toggle="collapse"
-              data-bs-target=".navbar-collapse.show"
-              (click)="isHamburgerMenuOpen = false">
-            Login
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
-          <a class="nav-link"
-              (click)="onLogout()"
-              href="javascript:void(0)"
-              data-bs-toggle="collapse"
-              data-bs-target=".navbar-collapse.show"
-              (click)="isHamburgerMenuOpen = false">
-            Logout
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="!isLoggedIn">
-          <a class="nav-link"
-              [routerLink]="['/signup']"
-              [routerLinkActive]="['active']"
-              data-bs-toggle="collapse"
-              data-bs-target=".navbar-collapse.show"
-              (click)="isHamburgerMenuOpen = false">
-            Signup
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<ng-container *ngIf="isHamburgerMenuOpen">
-  <div class="clickable-background"
-        data-bs-toggle="collapse"
-        data-bs-target=".navbar-collapse.show"
-        (click)="isHamburgerMenuOpen = false">
-  </div>
-</ng-container>
+  </ng-container>
+  <ng-container *ngIf="isLoggedIn">
+    <button mat-flat-button
+        color="primary"
+        [matMenuTriggerFor]="menu">
+      Actions
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item
+          [routerLink]="['/add-account']"
+          [routerLinkActive]="['mat-accent']">
+        Add Account
+      </button>
+      <button mat-menu-item
+          [routerLink]="['/add-transaction']"
+          [routerLinkActive]="['mat-accent']">
+        Add Transaction
+      </button>
+    </mat-menu>
+  </ng-container>
+  <span class="spacer"></span>
+  <ng-container class="nav-item" *ngIf="!isLoggedIn">
+    <button mat-flat-button
+        color="primary"
+        [routerLink]="['/login']"
+        [routerLinkActive]="['mat-accent']">
+      Login
+    </button>
+  </ng-container>
+  <ng-container class="nav-item" *ngIf="isLoggedIn">
+    <button mat-flat-button
+        color="primary"
+        (click)="onLogout()">
+      Logout
+    </button>
+  </ng-container>
+  <ng-container class="nav-item" *ngIf="!isLoggedIn">
+    <button mat-flat-button
+        color="primary"
+        [routerLink]="['/signup']"
+        [routerLinkActive]="['mat-accent']">
+      Signup
+    </button>
+  </ng-container>
+</mat-toolbar>
