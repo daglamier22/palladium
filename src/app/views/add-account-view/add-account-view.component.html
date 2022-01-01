@@ -1,67 +1,76 @@
 <form [formGroup]="accountForm" (submit)="onSubmit()">
-  <app-input-field
-    id="firmName"
-    placeholder="Enter the firm name"
-    formControlName="firmName"
-    label="Firm Name"
-    [error]="getFormControlErrors('firmName')">
-  </app-input-field>
-  <app-input-field
-    id="accountName"
-    placeholder="Enter an account name"
-    formControlName="accountName"
-    label="Account Name"
-    [error]="getFormControlErrors('accountName')">
-  </app-input-field>
-  <app-input-field
-    id="accountType"
-    placeholder="Enter the account type"
-    formControlName="accountType"
-    label="Account Type"
-    [error]="getFormControlErrors('accountType')">
-  </app-input-field>
-  <app-input-field
-    id="originalBalance"
-    placeholder="Enter the original balance"
-    formControlName="originalBalance"
-    label="Original Balance"
-    [error]="getFormControlErrors('originalBalance')">
-  </app-input-field>
-  <app-input-field
-    id="currentBalance"
-    placeholder="Enter the current balance"
-    formControlName="currentBalance"
-    label="Current Balance"
-    [error]="getFormControlErrors('currentBalance')">
-  </app-input-field>
-  <app-input-field
-    id="interestRate"
-    placeholder="Enter the interest rate"
-    formControlName="interestRate"
-    label="Interest Rate"
-    [error]="getFormControlErrors('interestRate')">
-  </app-input-field>
-  <app-input-field
-    id="creditLimit"
-    placeholder="Enter your credit limit"
-    formControlName="creditLimit"
-    label="Credit Limit"
-    [error]="getFormControlErrors('creditLimit')">
-  </app-input-field>
-  <app-input-field
-    id="loanTerm"
-    placeholder="Enter your loan term"
-    formControlName="loanTerm"
-    label="Loan Term"
-    [error]="getFormControlErrors('loanTerm')">
-  </app-input-field>
-  <app-input-field
-    id="loanOriginationDate"
-    placeholder="Enter your loan origination date"
-    formControlName="loanOriginationDate"
-    label="Loan Origination Date"
-    [error]="getFormControlErrors('loanOriginationDate')">
-  </app-input-field>
+  <div>
+    <app-input-field
+      placeholder="Enter the firm name"
+      formControlName="firmName"
+      label="Firm Name"
+      [error]="getFormControlErrors('firmName')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter an account name"
+      formControlName="accountName"
+      label="Account Name"
+      [error]="getFormControlErrors('accountName')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter the account type"
+      formControlName="accountType"
+      label="Account Type"
+      [error]="getFormControlErrors('accountType')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter the original balance"
+      formControlName="originalBalance"
+      label="Original Balance"
+      [error]="getFormControlErrors('originalBalance')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter the current balance"
+      formControlName="currentBalance"
+      label="Current Balance"
+      [error]="getFormControlErrors('currentBalance')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter the interest rate"
+      formControlName="interestRate"
+      label="Interest Rate"
+      [error]="getFormControlErrors('interestRate')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter your credit limit"
+      formControlName="creditLimit"
+      label="Credit Limit"
+      [error]="getFormControlErrors('creditLimit')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter your loan term"
+      formControlName="loanTerm"
+      label="Loan Term"
+      [error]="getFormControlErrors('loanTerm')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter your loan origination date"
+      formControlName="loanOriginationDate"
+      label="Loan Origination Date"
+      [error]="getFormControlErrors('loanOriginationDate')">
+    </app-input-field>
+  </div>
   <div class="mb-3">
     <app-button
       [disabled]="!accountForm.valid"
@@ -69,4 +78,12 @@
       [submit]="true">
     </app-button>
   </div>
+  <!-- <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Phone number</mat-label>
+      <app-tel-input-field formControlName="tel" required></app-tel-input-field>
+      <mat-icon matSuffix>phone</mat-icon>
+      <mat-hint>Include area code</mat-hint>
+    </mat-form-field>
+  </div> -->
 </form>

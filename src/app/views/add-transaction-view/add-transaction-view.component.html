@@ -1,60 +1,68 @@
 <form [formGroup]="transactionForm" (submit)="onSubmit()">
-  <app-input-field
-    id="date"
-    placeholder="Enter the date"
-    formControlName="date"
-    label="Date"
-    [error]="getFormControlErrors('date')">
-  </app-input-field>
-  <app-input-field
-    id="accountName"
-    placeholder="Enter an account name"
-    formControlName="accountName"
-    label="Account Name"
-    [error]="getFormControlErrors('accountName')">
-  </app-input-field>
-  <app-input-field
-    id="description"
-    placeholder="Enter the description"
-    formControlName="description"
-    label="Description"
-    [error]="getFormControlErrors('description')">
-  </app-input-field>
-  <app-input-field
-    id="categoryParent"
-    placeholder="Enter the parent category"
-    formControlName="categoryParent"
-    label="Parent Category"
-    [error]="getFormControlErrors('categoryParent')">
-  </app-input-field>
-  <app-input-field
-    id="categoryChild"
-    placeholder="Enter the child category"
-    formControlName="categoryChild"
-    label="Child Category"
-    [error]="getFormControlErrors('categoryChild')">
-  </app-input-field>
-  <app-input-field
-    id="amount"
-    placeholder="Enter the amount"
-    formControlName="amount"
-    label="Amount"
-    [error]="getFormControlErrors('amount')">
-  </app-input-field>
-  <app-input-field
-    id="transactionType"
-    placeholder="Enter your transaction type"
-    formControlName="transactionType"
-    label="Transaction Type"
-    [error]="getFormControlErrors('transactionType')">
-  </app-input-field>
-  <app-input-field
-    id="note"
-    placeholder="Enter your note"
-    formControlName="note"
-    label="Note"
-    [error]="getFormControlErrors('note')">
-  </app-input-field>
+  <div>
+    <app-input-field
+      placeholder="Enter the date"
+      formControlName="date"
+      label="Date"
+      [error]="getFormControlErrors('date')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter an account name"
+      formControlName="accountName"
+      label="Account Name"
+      [error]="getFormControlErrors('accountName')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter the description"
+      formControlName="description"
+      label="Description"
+      [error]="getFormControlErrors('description')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter the parent category"
+      formControlName="categoryParent"
+      label="Parent Category"
+      [error]="getFormControlErrors('categoryParent')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter the child category"
+      formControlName="categoryChild"
+      label="Child Category"
+      [error]="getFormControlErrors('categoryChild')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter the amount"
+      formControlName="amount"
+      label="Amount"
+      [error]="getFormControlErrors('amount')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter your transaction type"
+      formControlName="transactionType"
+      label="Transaction Type"
+      [error]="getFormControlErrors('transactionType')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      placeholder="Enter your note"
+      formControlName="note"
+      label="Note"
+      [error]="getFormControlErrors('note')">
+    </app-input-field>
+  </div>
   <div class="mb-3">
     <app-button
       [disabled]="!transactionForm.valid"

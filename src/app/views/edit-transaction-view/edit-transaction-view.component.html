@@ -1,70 +1,69 @@
 <form [formGroup]="transactionForm" (submit)="onSubmit()">
   <div>
     <app-input-field
-      id="date"
       placeholder="Enter the date"
       formControlName="date"
       label="Date"
-      [value]="transactionForm?.controls?.date?.value"
       [error]="getFormControlErrors('date')">
     </app-input-field>
+  </div>
+  <div>
     <app-input-field
-      id="accountName"
       placeholder="Enter an account name"
       formControlName="accountName"
       label="Account Name"
-      [value]="transactionForm?.controls?.accountName?.value"
       [error]="getFormControlErrors('accountName')">
     </app-input-field>
-    <app-input-field
-      id="description"
+  </div>
+  <div>
+   <app-input-field
       placeholder="Enter the description"
       formControlName="description"
       label="Description"
-      [value]="transactionForm?.controls?.description?.value"
       [error]="getFormControlErrors('description')">
     </app-input-field>
+  </div>
+  <div>
     <app-input-field
-      id="categoryParent"
       placeholder="Enter the parent category"
       formControlName="categoryParent"
       label="Parent Category"
-      [value]="transactionForm?.controls?.categoryParent?.value"
       [error]="getFormControlErrors('categoryParent')">
     </app-input-field>
+  </div>
+  <div>
     <app-input-field
-      id="categoryChild"
       placeholder="Enter the child category"
       formControlName="categoryChild"
       label="Child Category"
-      [value]="transactionForm?.controls?.categoryChild?.value"
       [error]="getFormControlErrors('categoryChild')">
     </app-input-field>
+  </div>
+  <div>
     <app-input-field
-      id="amount"
       placeholder="Enter the amount"
       formControlName="amount"
       label="Amount"
-      [value]="transactionForm?.controls?.amount?.value"
       [error]="getFormControlErrors('amount')">
     </app-input-field>
+  </div>
+  <div>
     <app-input-field
-      id="transactionType"
       placeholder="Enter your transaction type"
       formControlName="transactionType"
       label="Transaction Type"
-      [value]="transactionForm?.controls?.transactionType?.value"
       [error]="getFormControlErrors('transactionType')">
     </app-input-field>
+  </div>
+  <div>
     <app-input-field
-      id="note"
       placeholder="Enter your note"
       formControlName="note"
       label="Note"
-      [value]="transactionForm?.controls?.note?.value"
       [error]="getFormControlErrors('note')">
     </app-input-field>
-    <hr>
+  </div>
+  <div>
     <app-button
       [disabled]="!transactionForm.valid"
       text="Submit"
