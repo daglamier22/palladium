@@ -9,7 +9,6 @@ import { distinctUntilChanged } from 'rxjs/operators';
 })
 export class InputFieldComponent implements OnInit, ControlValueAccessor {
   @Input() public type: string = 'text';
-  // @Input() public value: string = ''; // delete after updating parent views
   @Input() public placeholder: string = '';
   @Input() public error: string = '';
   @Input() public label: string = '';
