@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, Optional, Self } from '@angular/core';
+import { Component, OnInit, Input, Optional, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl, FormControl, AbstractControl } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
 
