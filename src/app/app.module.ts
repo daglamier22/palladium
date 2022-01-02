@@ -22,6 +22,7 @@ import { AddTransactionViewComponent } from './views/add-transaction-view/add-tr
 import { EditTransactionViewComponent } from './views/edit-transaction-view/edit-transaction-view.component';
 import { ViewAccountViewComponent } from './views/view-account-view/view-account-view.component';
 import { ButtonCircleComponent } from './components/buttons/button-circle/button-circle.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ButtonCircleComponent } from './components/buttons/button-circle/button
     AddTransactionViewComponent,
     EditTransactionViewComponent,
     ViewAccountViewComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
