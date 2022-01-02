@@ -27,10 +27,11 @@
   </div>
   <div class="mb-3">
     <p class="form-text text-danger" *ngIf="!passwordsMatch()">Passwords do not match!</p>
-    <app-button
+    <app-button-rectangle
       [disabled]="!signupForm.valid"
       text="Signup"
-      [submit]="true">
-    </app-button>
+      [submit]="true"
+      color="primary">
+    </app-button-rectangle>
   </div>
 </form>

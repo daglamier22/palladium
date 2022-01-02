@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { EditTransactionViewComponent } from './edit-transaction-view.component';
 import { InputFieldComponent } from '../../components/input-field/input-field.component';
-import { ButtonComponent } from '../../components/buttons/button/button.component';
+import { ButtonRectangleComponent } from '../../components/buttons/button/button-rectangle.component';
 
 describe('EditTransactionViewComponent', () => {
   let component: EditTransactionViewComponent;
@@ -21,7 +21,7 @@ describe('EditTransactionViewComponent', () => {
       declarations: [
         EditTransactionViewComponent,
         InputFieldComponent,
-        ButtonComponent
+        ButtonRectangleComponent
       ]
     })
     .compileComponents();
