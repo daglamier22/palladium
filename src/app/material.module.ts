@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-const MaterialComponents = [
+const Material = [
   MatToolbarModule,
   MatIconModule,
   MatButtonModule,
@@ -19,7 +19,7 @@ const MaterialComponents = [
 ];
 
 @NgModule({
-  imports: [MaterialComponents],
-  exports: [MaterialComponents]
+  imports: [Material],
+  exports: [Material]
 })
 export class MaterialModule {}
