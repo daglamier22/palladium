@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomepageViewComponent } from './views/homepage-view/homepage-view.component';
-import { ButtonComponent } from './components/buttons/button/button.component';
+import { ButtonRectangleComponent } from './components/buttons/button/button-rectangle.component';
 import { InputFieldComponent } from './components/input-field/input-field.component';
 import { SignupComponent } from './views/auth/signup/signup.component';
 import { LoginComponent } from './views/auth/login/login.component';
@@ -21,13 +21,15 @@ import { EditAccountViewComponent } from './views/edit-account-view/edit-account
 import { AddTransactionViewComponent } from './views/add-transaction-view/add-transaction-view.component';
 import { EditTransactionViewComponent } from './views/edit-transaction-view/edit-transaction-view.component';
 import { ViewAccountViewComponent } from './views/view-account-view/view-account-view.component';
+import { ButtonCircleComponent } from './components/buttons/button-circle/button-circle.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomepageViewComponent,
-    ButtonComponent,
+    ButtonRectangleComponent,
+    ButtonCircleComponent,
     InputFieldComponent,
     SignupComponent,
     LoginComponent,
