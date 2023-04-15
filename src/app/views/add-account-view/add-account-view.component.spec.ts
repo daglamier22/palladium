@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AddAccountViewComponent } from './add-account-view.component';
 import { InputFieldComponent } from '../../components/input-field/input-field.component';
-import { ButtonComponent } from '../../components/buttons/button/button.component';
+import { ButtonRectangleComponent } from '../../components/buttons/button/button-rectangle.component';
 
 describe('AddAccountViewComponent', () => {
   let component: AddAccountViewComponent;
@@ -21,7 +21,7 @@ describe('AddAccountViewComponent', () => {
       declarations: [
         AddAccountViewComponent,
         InputFieldComponent,
-        ButtonComponent
+        ButtonRectangleComponent
       ]
     })
     .compileComponents();

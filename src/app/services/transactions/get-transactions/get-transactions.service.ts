@@ -47,7 +47,6 @@ export class GetTransactionsService {
       { headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.getToken()}`}) }
     ).subscribe((response: GetTransactionsResponse) => {
       this.serverResponse = { ...response };
-      console.log(this.serverResponse);
       this.loading = false;
       this.loadingChanged.next(this.loading);
     }, (error) => {
@@ -67,7 +66,6 @@ export class GetTransactionsService {
   public getTransaction(id: string): Transaction | null {
     if (this.serverResponse) {
       for (const transaction of this.serverResponse.values.transactions) {
-        console.log(transaction);
         if (transaction._id === id) {
           return transaction;
         }

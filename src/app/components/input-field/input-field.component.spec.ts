@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 
 import { InputFieldComponent } from './input-field.component';
 
@@ -15,6 +16,7 @@ describe('InputFieldComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InputFieldComponent);
+    (fixture.componentInstance as any).ngControl = new FormControl();
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
