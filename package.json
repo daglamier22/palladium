@@ -37,6 +37,7 @@
     "@angular/router": "^14.3.0",
     "express": "^4.17.1",
     "hammerjs": "^2.0.8",
+    "ngx-plaid-link": "^14.0.0",
     "rxjs": "~6.6.0",
     "set-value": ">=4.0.1",
     "tslib": "^2.3.0",
