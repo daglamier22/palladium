@@ -1,24 +1,27 @@
 <form [formGroup]="loginForm" (submit)="onSubmit()">
-  <app-input-field
-    id="username"
-    placeholder="Enter your username"
-    formControlName="username"
-    label="User Name"
-    [error]="getFormControlErrors('username')">
-  </app-input-field>
-  <app-input-field
-    id="password"
-    type="password"
-    placeholder="Enter your password"
-    formControlName="password"
-    label="Password"
-    [error]="getFormControlErrors('password')">
-  </app-input-field>
+  <div>
+    <app-input-field
+      placeholder="Enter your username"
+      formControlName="username"
+      label="User Name"
+      [error]="getFormControlErrors('username')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      type="password"
+      placeholder="Enter your password"
+      formControlName="password"
+      label="Password"
+      [error]="getFormControlErrors('password')">
+    </app-input-field>
+  </div>
   <div class="mb-3">
-    <app-button
+    <app-button-rectangle
       [disabled]="!loginForm.valid"
       text="Login"
-      [submit]="true">
-    </app-button>
+      [submit]="true"
+      color="primary">
+    </app-button-rectangle>
   </div>
 </form>

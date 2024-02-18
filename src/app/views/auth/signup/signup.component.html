@@ -1,33 +1,37 @@
 <form [formGroup]="signupForm" (submit)="onSubmit()">
-  <app-input-field
-    id="username"
-    placeholder="Enter a username"
-    formControlName="username"
-    label="User Name"
-    [error]="getFormControlErrors('username')">
-  </app-input-field>
-  <app-input-field
-    id="password"
-    type="password"
-    placeholder="Enter a password"
-    formControlName="password"
-    label="Password"
-    [error]="getFormControlErrors('password')">
-  </app-input-field>
-  <app-input-field
-    id="confirmPassword"
-    type="password"
-    placeholder="Confirm a password"
-    formControlName="confirmPassword"
-    label="Confirm Password"
-    [error]="getFormControlErrors('confirmPassword')">
-  </app-input-field>
+  <div>
+    <app-input-field
+      placeholder="Enter a username"
+      formControlName="username"
+      label="User Name"
+      [error]="getFormControlErrors('username')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      type="password"
+      placeholder="Enter a password"
+      formControlName="password"
+      label="Password"
+      [error]="getFormControlErrors('password')">
+    </app-input-field>
+  </div>
+  <div>
+    <app-input-field
+      type="password"
+      placeholder="Confirm a password"
+      formControlName="confirmPassword"
+      label="Confirm Password"
+      [error]="getFormControlErrors('confirmPassword')">
+    </app-input-field>
+  </div>
   <div class="mb-3">
     <p class="form-text text-danger" *ngIf="!passwordsMatch()">Passwords do not match!</p>
-    <app-button
+    <app-button-rectangle
       [disabled]="!signupForm.valid"
       text="Signup"
-      [submit]="true">
-    </app-button>
+      [submit]="true"
+      color="primary">
+    </app-button-rectangle>
   </div>
 </form>

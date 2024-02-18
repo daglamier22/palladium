@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Subject, Observable } from 'rxjs';
 
 import * as util from '../../util';
+import { CreateLinkTokenResponse } from './create-link-token.model';
 import { AuthService } from '../../auth/auth.service';
-import { Account, GetAccountResponse } from './get-accounts.model';
 
-const serverURL = '/accounts/getAccounts';
+const serverURL = '/item/createLinkToken';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetAccountsService {
+export class CreateLinkTokenService {
   private loading: boolean = false;
   private loadingChanged = new Subject<boolean>();
-  private serverResponse!: GetAccountResponse;
+  private serverResponse!: CreateLinkTokenResponse;
 
   constructor(
     private http: HttpClient,
@@ -29,7 +29,7 @@ export class GetAccountsService {
     return this.loadingChanged.asObservable();
   }
 
-  public getServerResponse(): GetAccountResponse {
+  public getServerResponse(): CreateLinkTokenResponse {
     return this.serverResponse;
   }
 
@@ -42,36 +42,26 @@ export class GetAccountsService {
     this.loadingChanged.next(this.loading);
 
     const fullURL = util.determineServerURL() + serverURL;
-    this.http.get<GetAccountResponse>(
+    this.http.get<CreateLinkTokenResponse>(
       fullURL,
       { headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.getToken()}`}) }
-    ).subscribe((response: GetAccountResponse) => {
+    ).subscribe((response: CreateLinkTokenResponse) => {
       this.serverResponse = { ...response };
       this.loading = false;
       this.loadingChanged.next(this.loading);
     }, (error) => {
-      console.log('GetAccountsService call:', error);
+      console.log('CreateLinkTokenService call:', error);
       this.serverResponse = {
         apiMessage: error,
         apiStatus: 'FAILURE',
         errorCode: 999,
         values: {
-          accounts: []
+          expiration: '',
+          linkToken: ''
         }
       };
       this.loading = false;
       this.loadingChanged.next(this.loading);
     });
-  }
-
-  public getAccount(id: string): Account | null {
-    if (this.serverResponse) {
-      for (const account of this.serverResponse.values.accounts) {
-        if (account._id === id) {
-          return account;
-        }
-      }
-    }
-    return null;
   }
 }

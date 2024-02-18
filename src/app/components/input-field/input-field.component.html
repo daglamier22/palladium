@@ -1,15 +1,14 @@
-<div class="form-floating mb-3">
+<mat-form-field ngDefaultControl appearance="outline">
+  <mat-label>{{ label }}</mat-label>
   <input
-    class="form-control"
+    matInput
+    [formControl]="uniqueNameControl"
     [type]="type"
     [placeholder]="placeholder"
-    [value]="value"
-    (input)="writeValue($event)"
-    (blur)="onTouched()"
-    [disabled]="disabled"
-    [id]="id">
-  <label for="id">{{ label }}</label>
-  <div class="invalid-feedback d-block">
+    (blur)="onBlur($event)"
+    (input)="valueUpdate(uniqueNameControl.value)"
+    [required]="required">
+  <mat-error *ngIf="errorState">
     {{ error }}
-  </div>
-</div>
+  </mat-error>
+</mat-form-field>

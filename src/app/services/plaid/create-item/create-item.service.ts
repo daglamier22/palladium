@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
 import * as util from '../../util';
+import { CreateItemResponse } from './create-item.model';
 import { AuthService } from '../../auth/auth.service';
-import { Account, GetAccountResponse } from './get-accounts.model';
 
-const serverURL = '/accounts/getAccounts';
+const serverURL = '/item/createItem';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetAccountsService {
+export class CreateItemService {
   private loading: boolean = false;
   private loadingChanged = new Subject<boolean>();
-  private serverResponse!: GetAccountResponse;
+  private serverResponse!: CreateItemResponse;
 
   constructor(
     private http: HttpClient,
@@ -29,11 +29,11 @@ export class GetAccountsService {
     return this.loadingChanged.asObservable();
   }
 
-  public getServerResponse(): GetAccountResponse {
+  public getServerResponse(): CreateItemResponse {
     return this.serverResponse;
   }
 
-  public call(): void {
+  public call(publicToken: string, institutionId: string, institutionName: string): void {
     if (this.loading) {
       return;
     }
@@ -41,37 +41,33 @@ export class GetAccountsService {
     this.loading = true;
     this.loadingChanged.next(this.loading);
 
+    let requestBody = {
+      publicToken: publicToken,
+      institutionId: institutionId,
+      institutionName: institutionName
+    }
+
     const fullURL = util.determineServerURL() + serverURL;
-    this.http.get<GetAccountResponse>(
+    this.http.post<CreateItemResponse>(
       fullURL,
+      requestBody,
       { headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.getToken()}`}) }
-    ).subscribe((response: GetAccountResponse) => {
+    ).subscribe((response: CreateItemResponse) => {
       this.serverResponse = { ...response };
       this.loading = false;
       this.loadingChanged.next(this.loading);
     }, (error) => {
-      console.log('GetAccountsService call:', error);
+      console.log('CreateItemService call:', error);
       this.serverResponse = {
         apiMessage: error,
         apiStatus: 'FAILURE',
         errorCode: 999,
         values: {
-          accounts: []
+          item_id: ''
         }
       };
       this.loading = false;
       this.loadingChanged.next(this.loading);
     });
-  }
-
-  public getAccount(id: string): Account | null {
-    if (this.serverResponse) {
-      for (const account of this.serverResponse.values.accounts) {
-        if (account._id === id) {
-          return account;
-        }
-      }
-    }
-    return null;
   }
 }

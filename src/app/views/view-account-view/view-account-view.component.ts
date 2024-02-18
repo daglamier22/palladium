@@ -19,7 +19,6 @@ export class ViewAccountViewComponent implements OnInit {
     this.getTransactionsService.call();
     this.getTransactionsService.getLoadingChanged().subscribe((loading: boolean) => {
       this.transactions = this.getTransactionsService.getServerResponse().values.transactions;
-      console.log(this.transactions);
     });
   }
 }
