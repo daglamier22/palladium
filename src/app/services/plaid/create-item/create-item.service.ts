@@ -33,7 +33,7 @@ export class CreateItemService {
     return this.serverResponse;
   }
 
-  public call(publicToken: string, institutionId: string): void {
+  public call(publicToken: string, institutionId: string, institutionName: string): void {
     if (this.loading) {
       return;
     }
@@ -43,7 +43,8 @@ export class CreateItemService {
 
     let requestBody = {
       publicToken: publicToken,
-      institutionId: institutionId
+      institutionId: institutionId,
+      institutionName: institutionName
     }
 
     const fullURL = util.determineServerURL() + serverURL;

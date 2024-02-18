@@ -50,7 +50,8 @@ export class NavbarComponent implements OnInit {
     console.log('success', token, metadata);
     if (token) {
       const institutionId = metadata?.institution?.institution_id ? metadata?.institution?.institution_id : '';
-      this.createItemService.call(token, institutionId);
+      const institutionName = metadata?.institution?.name ? metadata?.institution?.name : '';
+      this.createItemService.call(token, institutionId, institutionName);
       this.subscribeToCreateItemService();
     }
   }
