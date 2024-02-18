@@ -1,15 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  selector: 'app-button-rectangle',
+  templateUrl: './button-rectangle.component.html',
+  styleUrls: ['./button-rectangle.component.scss']
 })
-export class ButtonComponent implements OnInit {
+export class ButtonRectangleComponent implements OnInit {
   @Input() public submit: boolean = false;
   @Input() private parentFunction: Function = () => {};
   @Input() public text: string = '';
   @Input() public disabled: boolean = false;
+  @Input() public color: string = ''; // 'primary', 'accent', or 'warn'
 
   constructor() { }
 

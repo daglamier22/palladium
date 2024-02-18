@@ -18,8 +18,6 @@ export class OverviewViewComponent implements OnInit {
     this.getAccountsService.call();
     this.getAccountsService.getLoadingChanged().subscribe((loading: boolean) => {
       this.accounts = this.getAccountsService.getServerResponse().values.accounts;
-      console.log(this.accounts);
     });
   }
-
 }
