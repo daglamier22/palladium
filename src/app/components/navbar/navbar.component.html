@@ -27,8 +27,7 @@
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item
-          [routerLink]="['/add-account']"
-          [routerLinkActive]="['mat-accent']">
+        (click)="onAddAccount()">
         Add Account
       </button>
       <button mat-menu-item
