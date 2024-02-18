@@ -1,13 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
-import { CreateTokenService } from './create-link-token.service';
+import { CreateLinkTokenService } from './create-link-token.service';
 
-describe('CreateTokenService', () => {
-  let service: CreateTokenService;
+describe('CreateLinkTokenService', () => {
+  let service: CreateLinkTokenService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(CreateTokenService);
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule
+      ]
+    });
+    service = TestBed.inject(CreateLinkTokenService);
   });
 
   it('should be created', () => {
