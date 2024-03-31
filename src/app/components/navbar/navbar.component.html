@@ -9,7 +9,7 @@
       [routerLink]="['/']"
       [routerLinkActiveOptions]="{exact:true}"
       [routerLinkActive]="['mat-accent']">
-    Home
+    {{ title }}
   </button>
   <ng-container *ngIf="isLoggedIn">
     <button mat-flat-button

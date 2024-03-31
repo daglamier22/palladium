@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivationStart, Router } from '@angular/router';
 import { NgxPlaidLinkService, PlaidConfig, PlaidErrorMetadata, PlaidEventMetadata, PlaidLinkHandler, PlaidSuccessMetadata } from 'ngx-plaid-link';
 
 import { AuthService } from '../../services/auth/auth.service';
@@ -14,6 +14,7 @@ import { CreateItemService } from '../../services/plaid/create-item/create-item.
 export class NavbarComponent implements OnInit {
   public isLoggedIn: boolean = false;
   public isHamburgerMenuOpen: boolean = false;
+  public title: string | undefined = '';
 
   private plaidLinkHandler: PlaidLinkHandler | undefined = undefined;
 
@@ -28,6 +29,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.authService.getLoggedInChanged().subscribe((loggedIn: boolean) => {
       this.isLoggedIn = loggedIn;
+    });
+    this.router.events.subscribe(event => {
+      if (event instanceof ActivationStart) {
+        this.title = event.snapshot.data['title'];
+      }
     });
   }
 
