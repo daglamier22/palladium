@@ -13,11 +13,11 @@ import { EditTransactionViewComponent } from './views/edit-transaction-view/edit
 import { ViewAccountViewComponent } from './views/view-account-view/view-account-view.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full'},
-  { path: '', component: HomepageViewComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'overview', component: OverviewViewComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/', pathMatch: 'full', data: { title: 'McNet' }},
+  { path: '', component: HomepageViewComponent, data: { title: 'McNet' } },
+  { path: 'signup', component: SignupComponent, data: { title: 'Signup' } },
+  { path: 'login', component: LoginComponent, data: { title: 'Login' } },
+  { path: 'overview', component: OverviewViewComponent, canActivate: [AuthGuard], data: { title: 'Overview' } },
   { path: 'add-account', component: AddAccountViewComponent, canActivate: [AuthGuard] },
   { path: 'edit-account/:id', component: EditAccountViewComponent, canActivate: [AuthGuard] },
   { path: 'add-transaction', component: AddTransactionViewComponent, canActivate: [AuthGuard] },
